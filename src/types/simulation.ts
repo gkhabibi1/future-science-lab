@@ -11,6 +11,7 @@ export interface SimulationItem {
   iconName: string;
   badgeColor: string;
   formula?: string;
+  path?: string;
   tags: string[];
 }
 

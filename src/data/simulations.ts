@@ -88,6 +88,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'Target',
     badgeColor: 'from-violet-600 to-indigo-500',
     formula: 'R = \\frac{v_0^2 \\sin(2\\theta)}{g}, \\quad H_{\\text{max}} = h_0 + \\frac{v_0^2 \\sin^2\\theta}{2g}',
+    path: '/praktikum/sma/gerak-parabola',
     tags: ['SMA', 'Kinematika', 'Parabola', 'Vektor', 'Grafik']
   },
   {

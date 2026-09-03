@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { SIMULATION_LIST } from '@/data/simulations';
 import { SimulationItem, EducationLevel } from '@/types/simulation';
 import SimulationRunner from '@/components/SimulationRunner';
@@ -24,7 +25,8 @@ import {
   Database,
   Play,
   ArrowRight,
-  Filter
+  Filter,
+  ExternalLink
 } from 'lucide-react';
 
 export default function Home() {
@@ -244,14 +246,25 @@ export default function Home() {
                         </div>
                       )}
 
-                      <button
-                        onClick={() => setActiveSimulation(sim)}
-                        className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-800 hover:bg-cyan-600 text-white text-xs font-bold border border-slate-700 hover:border-cyan-500 transition duration-200 group-hover:shadow-lg group-hover:shadow-cyan-500/20"
-                      >
-                        <Play size={14} className="fill-current" />
-                        <span>Mulai Simulasi Praktikum</span>
-                        <ArrowRight size={14} className="group-hover:translate-x-1 transition" />
-                      </button>
+                      {sim.path ? (
+                        <Link
+                          href={sim.path}
+                          className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold shadow-lg shadow-purple-500/20 transition duration-200 group-hover:shadow-purple-500/40"
+                        >
+                          <ExternalLink size={14} />
+                          <span>Mulai Simulasi Halaman Khusus</span>
+                          <ArrowRight size={14} className="group-hover:translate-x-1 transition" />
+                        </Link>
+                      ) : (
+                        <button
+                          onClick={() => setActiveSimulation(sim)}
+                          className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-slate-800 hover:bg-cyan-600 text-white text-xs font-bold border border-slate-700 hover:border-cyan-500 transition duration-200 group-hover:shadow-lg group-hover:shadow-cyan-500/20"
+                        >
+                          <Play size={14} className="fill-current" />
+                          <span>Mulai Simulasi Praktikum</span>
+                          <ArrowRight size={14} className="group-hover:translate-x-1 transition" />
+                        </button>
+                      )}
                     </div>
                   </div>
                 ))}
