@@ -50,6 +50,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'Scale',
     badgeColor: 'from-amber-500 to-yellow-400',
     formula: 'w \\cdot l_w = F \\cdot l_F \\implies \\text{KM} = \\frac{w}{F} = \\frac{l_F}{l_w}',
+    path: '/praktikum/smp/tuas',
     tags: ['SMP', 'Tuas', 'Pengungkit', 'Momen Gaya', 'Mekanis']
   },
   {
@@ -62,6 +63,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'Flame',
     badgeColor: 'from-orange-500 to-amber-600',
     formula: '\\Delta L = L_0 \\cdot \\alpha \\cdot \\Delta T \\implies L_t = L_0 (1 + \\alpha \\Delta T)',
+    path: '/praktikum/smp/pemuaian',
     tags: ['SMP', 'Kalor', 'Suhu', 'Pemuaian', 'Logam']
   },
   {
@@ -74,6 +76,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'Sun',
     badgeColor: 'from-indigo-500 to-purple-400',
     formula: '\\frac{1}{f} = \\frac{1}{s} + \\frac{1}{s\'} \\implies M = \\left| \\frac{s\'}{s} \\right|',
+    path: '/praktikum/sma/lensa',
     tags: ['SMP', 'Optika', 'Lensa', 'Cermin', 'Bayangan']
   },
 
