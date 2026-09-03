@@ -114,6 +114,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'TestTube',
     badgeColor: 'from-pink-500 to-rose-500',
     formula: 'M_A V_A n_A = M_B V_B n_B \\implies \\text{pH} = -\\log[\\text{H}^+]',
+    path: '/praktikum/sma/titrasi',
     tags: ['SMA', 'Kimia', 'Titrasi', 'pH', 'Stokiometri']
   },
   {
