@@ -4,7 +4,7 @@ import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SIMULATION_LIST } from '@/data/simulations';
-import { SimulationItem, EducationLevel } from '@/types/simulation';
+import { SimulationItem, EducationLevel, SubjectCategory } from '@/types/simulation';
 import SimulationRunner from '@/components/SimulationRunner';
 import MathFormula from '@/components/MathFormula';
 import {
@@ -26,12 +26,17 @@ import {
   Play,
   ArrowRight,
   Filter,
-  ExternalLink
+  ExternalLink,
+  Atom,
+  Dna,
+  Leaf,
+  Microscope,
+  BookOpen
 } from 'lucide-react';
 
 export default function Home() {
   const [selectedLevel, setSelectedLevel] = useState<EducationLevel | 'ALL'>('ALL');
-  const [selectedSubject, setSelectedSubject] = useState<string>('ALL');
+  const [selectedSubject, setSelectedSubject] = useState<SubjectCategory | 'ALL'>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeSimulation, setActiveSimulation] = useState<SimulationItem | null>(null);
 
@@ -48,7 +53,40 @@ export default function Home() {
       case 'Zap': return <Zap className="w-6 h-6 text-blue-400" />;
       case 'TestTube': return <TestTube className="w-6 h-6 text-pink-400" />;
       case 'Activity': return <Activity className="w-6 h-6 text-emerald-400" />;
+      case 'Leaf': return <Leaf className="w-6 h-6 text-emerald-400" />;
+      case 'Microscope': return <Microscope className="w-6 h-6 text-teal-400" />;
+      case 'FlaskConical': return <FlaskConical className="w-6 h-6 text-rose-400" />;
       default: return <FlaskConical className="w-6 h-6 text-indigo-400" />;
+    }
+  };
+
+  // Helper Badge Mata Pelajaran
+  const getSubjectBadge = (subject: SubjectCategory) => {
+    switch (subject) {
+      case 'Fisika':
+        return (
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-1">
+            <Atom size={12} className="text-blue-400" /> Fisika
+          </span>
+        );
+      case 'Kimia':
+        return (
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-pink-500/20 text-pink-300 border border-pink-500/30 flex items-center gap-1">
+            <FlaskConical size={12} className="text-pink-400" /> Kimia
+          </span>
+        );
+      case 'Biologi':
+        return (
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
+            <Dna size={12} className="text-emerald-400" /> Biologi
+          </span>
+        );
+      default:
+        return (
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 flex items-center gap-1">
+            <BookOpen size={12} className="text-cyan-400" /> Sains Dasar
+          </span>
+        );
     }
   };
 
@@ -65,6 +103,15 @@ export default function Home() {
       return matchLevel && matchSubject && matchSearch;
     });
   }, [selectedLevel, selectedSubject, searchQuery]);
+
+  // Total counts per subject
+  const subjectCounts = useMemo(() => {
+    return {
+      Fisika: SIMULATION_LIST.filter((s) => s.subject === 'Fisika').length,
+      Kimia: SIMULATION_LIST.filter((s) => s.subject === 'Kimia').length,
+      Biologi: SIMULATION_LIST.filter((s) => s.subject === 'Biologi').length,
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-white pb-20">
@@ -126,63 +173,121 @@ export default function Home() {
 
               <div className="relative z-10 p-8 sm:p-12 max-w-2xl space-y-4">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/20 backdrop-blur border border-cyan-400/40 text-cyan-300 text-xs font-bold shadow-lg">
-                  <Sparkles size={14} className="text-amber-400" /> Virtual Science Lab (Presisi LaTeX)
+                  <Sparkles size={14} className="text-amber-400" /> Virtual Science Lab (Fisika, Kimia, Biologi)
                 </div>
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight drop-shadow-md">
                   Eksplorasi Sains Digital Interaktif Berbasis AI
                 </h2>
                 <p className="text-slate-200 text-sm sm:text-base leading-relaxed drop-shadow">
-                  Pilih kurikulum simulasi berdasarkan tingkat pendidikan Anda: <strong className="text-cyan-300">SD (Pengenalan & Visual)</strong>, <strong className="text-amber-300">SMP (Hubungan Antar Variabel)</strong>, atau <strong className="text-purple-300">SMA (Analisis Data & Rumus LaTeX)</strong>.
+                  Pilih kurikulum simulasi berdasarkan disiplin ilmu (<strong className="text-blue-300">Fisika</strong>, <strong className="text-pink-300">Kimia</strong>, <strong className="text-emerald-300">Biologi</strong>) dan jenjang pendidikan (<strong className="text-cyan-300">SD</strong>, <strong className="text-amber-300">SMP</strong>, <strong className="text-purple-300">SMA</strong>).
                 </p>
               </div>
             </div>
 
-            {/* Level Selector Tabs */}
+            {/* Filter Section: Mata Pelajaran & Level */}
             <div className="space-y-4">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <div className="flex flex-wrap items-center gap-2 bg-slate-900/80 p-1.5 rounded-2xl border border-slate-800 backdrop-blur">
+              
+              {/* Row 1: Subject Category Filters (Pemisah Fisika, Biologi, Kimia) */}
+              <div className="space-y-2">
+                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400 block">
+                  Pilih Disiplin / Mata Pelajaran:
+                </span>
+                <div className="flex flex-wrap items-center gap-2 bg-slate-900/90 p-2 rounded-2xl border border-slate-800 backdrop-blur">
                   <button
-                    onClick={() => setSelectedLevel('ALL')}
-                    className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
-                      selectedLevel === 'ALL'
+                    onClick={() => setSelectedSubject('ALL')}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
+                      selectedSubject === 'ALL'
                         ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20'
                         : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
                     }`}
                   >
-                    Semua Tingkat ({SIMULATION_LIST.length})
+                    <BookOpen size={14} />
+                    Semua Sains ({SIMULATION_LIST.length})
+                  </button>
+
+                  <button
+                    onClick={() => setSelectedSubject('Fisika')}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
+                      selectedSubject === 'Fisika'
+                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/20'
+                        : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                    }`}
+                  >
+                    <Atom size={14} className="text-blue-400" />
+                    Fisika ({subjectCounts.Fisika})
+                  </button>
+
+                  <button
+                    onClick={() => setSelectedSubject('Kimia')}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
+                      selectedSubject === 'Kimia'
+                        ? 'bg-gradient-to-r from-pink-600 to-rose-600 text-white shadow-lg shadow-pink-500/20'
+                        : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                    }`}
+                  >
+                    <FlaskConical size={14} className="text-pink-400" />
+                    Kimia ({subjectCounts.Kimia})
+                  </button>
+
+                  <button
+                    onClick={() => setSelectedSubject('Biologi')}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
+                      selectedSubject === 'Biologi'
+                        ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-500/20'
+                        : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                    }`}
+                  >
+                    <Dna size={14} className="text-emerald-400" />
+                    Biologi ({subjectCounts.Biologi})
+                  </button>
+                </div>
+              </div>
+
+              {/* Row 2: Level Filters & Search Bar */}
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-2">
+                <div className="flex flex-wrap items-center gap-2 bg-slate-900/80 p-1.5 rounded-2xl border border-slate-800 backdrop-blur">
+                  <button
+                    onClick={() => setSelectedLevel('ALL')}
+                    className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition ${
+                      selectedLevel === 'ALL'
+                        ? 'bg-slate-800 text-white border border-slate-700'
+                        : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    Semua Tingkat
                   </button>
                   <button
                     onClick={() => setSelectedLevel('SD')}
-                    className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
+                    className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${
                       selectedLevel === 'SD'
-                        ? 'bg-gradient-to-r from-teal-500 to-emerald-600 text-white shadow-lg shadow-teal-500/20'
-                        : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                        ? 'bg-teal-600 text-white'
+                        : 'text-slate-400 hover:text-white'
                     }`}
                   >
-                    <GraduationCap size={14} />
-                    SD (Pengenalan & Visual)
+                    <GraduationCap size={13} />
+                    SD
                   </button>
                   <button
                     onClick={() => setSelectedLevel('SMP')}
-                    className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
+                    className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${
                       selectedLevel === 'SMP'
-                        ? 'bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-lg shadow-amber-500/20'
-                        : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                        ? 'bg-amber-600 text-white'
+                        : 'text-slate-400 hover:text-white'
                     }`}
                   >
-                    <GraduationCap size={14} />
-                    SMP (Hubungan Variabel)
+                    <GraduationCap size={13} />
+                    SMP
                   </button>
                   <button
                     onClick={() => setSelectedLevel('SMA')}
-                    className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
+                    className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${
                       selectedLevel === 'SMA'
-                        ? 'bg-gradient-to-r from-purple-500 to-indigo-600 text-white shadow-lg shadow-purple-500/20'
-                        : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                        ? 'bg-purple-600 text-white'
+                        : 'text-slate-400 hover:text-white'
                     }`}
                   >
-                    <GraduationCap size={14} />
-                    SMA (Analisis & Rumus)
+                    <GraduationCap size={13} />
+                    SMA
                   </button>
                 </div>
 
@@ -191,7 +296,7 @@ export default function Home() {
                   <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
                   <input
                     type="text"
-                    placeholder="Cari simulasi sains..."
+                    placeholder="Cari fisika, kimia, biologi..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition"
@@ -205,7 +310,7 @@ export default function Home() {
               <div className="text-center py-16 bg-slate-900/40 rounded-3xl border border-slate-800/80 space-y-3">
                 <Filter className="w-10 h-10 text-slate-600 mx-auto" />
                 <h3 className="text-white font-bold">Tidak ada simulasi yang ditemukan</h3>
-                <p className="text-slate-400 text-xs">Coba ubah kata kunci pencarian atau filter tingkat pendidikan.</p>
+                <p className="text-slate-400 text-xs">Coba sesuaikan filter mata pelajaran (Fisika, Kimia, Biologi) atau kata kunci pencarian.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -215,16 +320,19 @@ export default function Home() {
                     className="glass-card rounded-3xl p-6 flex flex-col justify-between space-y-5 border border-slate-800/80 group"
                   >
                     <div className="space-y-4">
-                      {/* Top Header & Badge */}
+                      {/* Top Header & Badges */}
                       <div className="flex justify-between items-start gap-2">
                         <div className="p-3 rounded-2xl bg-slate-900 border border-slate-800 group-hover:border-cyan-500/40 transition">
                           {getIcon(sim.iconName)}
                         </div>
-                        <span
-                          className={`px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wide text-white bg-gradient-to-r ${sim.badgeColor}`}
-                        >
-                          {sim.level} • {sim.focus}
-                        </span>
+                        <div className="flex flex-col items-end gap-1">
+                          {getSubjectBadge(sim.subject)}
+                          <span
+                            className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wide text-white bg-gradient-to-r ${sim.badgeColor}`}
+                          >
+                            {sim.level}
+                          </span>
+                        </div>
                       </div>
 
                       {/* Title & Description */}
@@ -275,7 +383,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="mt-20 pt-8 border-t border-slate-800/80 text-center text-xs text-slate-500">
-          <p>© 2026 LABSAINS - Platform Simulasi Praktikum Virtual Interaktif (SD, SMP, SMA).</p>
+          <p>© 2026 LABSAINS - Platform Simulasi Praktikum Virtual Interaktif (Fisika, Kimia, Biologi).</p>
         </footer>
       </div>
     </div>

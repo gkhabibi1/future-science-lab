@@ -6,13 +6,13 @@ export const SIMULATION_LIST: SimulationItem[] = [
     id: 'siklus-air',
     title: 'Siklus Air & Daur Hidrologi',
     level: 'SD',
-    subject: 'Pengenalan Sains',
+    subject: 'Biologi',
     focus: 'Pengenalan & Visual',
     description: 'Pelajari proses Evaporasi (Penguapan), Kondensasi (Pembentukan Awan), dan Presipitasi (Hujan) secara visual dan interaktif.',
     iconName: 'CloudRain',
     badgeColor: 'from-blue-500 to-cyan-400',
     formula: 'E = k \\cdot I_{\\text{sun}} \\cdot (1 + v_{\\text{wind}})',
-    tags: ['SD', 'Awan', 'Hujan', 'Air', 'Lingkungan']
+    tags: ['SD', 'Biologi', 'Awan', 'Hujan', 'Air', 'Lingkungan']
   },
   {
     id: 'magnet-sederhana',
@@ -24,7 +24,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'Magnet',
     badgeColor: 'from-red-500 to-rose-400',
     formula: 'F = \\frac{\\mu_0}{4\\pi} \\cdot \\frac{q_{m1} q_{m2}}{r^2}',
-    tags: ['SD', 'Magnet', 'Gaya Tarik', 'Kutub Magnet']
+    tags: ['SD', 'Fisika', 'Magnet', 'Gaya Tarik', 'Kutub Magnet']
   },
   {
     id: 'mengapung-tenggelam',
@@ -36,7 +36,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'Waves',
     badgeColor: 'from-teal-500 to-emerald-400',
     formula: 'F_a = \\rho_{\\text{cairan}} \\cdot g \\cdot V_{\\text{tercelup}}',
-    tags: ['SD', 'Massa Jenis', 'Archimedes', 'Air', 'Fluida']
+    tags: ['SD', 'Fisika', 'Massa Jenis', 'Archimedes', 'Air', 'Fluida']
   },
 
   // --- TINGKAT SMP ---
@@ -51,7 +51,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     badgeColor: 'from-amber-500 to-yellow-400',
     formula: 'w \\cdot l_w = F \\cdot l_F \\implies \\text{KM} = \\frac{w}{F} = \\frac{l_F}{l_w}',
     path: '/praktikum/smp/tuas',
-    tags: ['SMP', 'Tuas', 'Pengungkit', 'Momen Gaya', 'Mekanis']
+    tags: ['SMP', 'Fisika', 'Tuas', 'Pengungkit', 'Momen Gaya', 'Mekanis']
   },
   {
     id: 'pemuaian-zat',
@@ -64,7 +64,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     badgeColor: 'from-orange-500 to-amber-600',
     formula: '\\Delta L = L_0 \\cdot \\alpha \\cdot \\Delta T \\implies L_t = L_0 (1 + \\alpha \\Delta T)',
     path: '/praktikum/smp/pemuaian',
-    tags: ['SMP', 'Kalor', 'Suhu', 'Pemuaian', 'Logam']
+    tags: ['SMP', 'Fisika', 'Kalor', 'Suhu', 'Pemuaian', 'Logam']
   },
   {
     id: 'cermin-lensa',
@@ -77,7 +77,19 @@ export const SIMULATION_LIST: SimulationItem[] = [
     badgeColor: 'from-indigo-500 to-purple-400',
     formula: '\\frac{1}{f} = \\frac{1}{s} + \\frac{1}{s\'} \\implies M = \\left| \\frac{s\'}{s} \\right|',
     path: '/praktikum/sma/lensa',
-    tags: ['SMP', 'Optika', 'Lensa', 'Cermin', 'Bayangan']
+    tags: ['SMP', 'Fisika', 'Optika', 'Lensa', 'Cermin', 'Bayangan']
+  },
+  {
+    id: 'fotosintesis-tumbuhan',
+    title: 'Fotosintesis & Pembentukan O2',
+    level: 'SMP',
+    subject: 'Biologi',
+    focus: 'Hubungan Antar Variabel',
+    description: 'Eksperimen laju pembentukan gelembung oksigen (O2) berdasarkan intensitas cahaya, spektrum warna, dan klorofil (Uji Ingenhousz).',
+    iconName: 'Leaf',
+    badgeColor: 'from-emerald-500 to-green-600',
+    formula: '6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\xrightarrow{\\text{cahaya}} \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2',
+    tags: ['SMP', 'Biologi', 'Fotosintesis', 'Tumbuhan', 'Oksigen', 'Klorofil']
   },
 
   // --- TINGKAT SMA ---
@@ -92,7 +104,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     badgeColor: 'from-violet-600 to-indigo-500',
     formula: 'R = \\frac{v_0^2 \\sin(2\\theta)}{g}, \\quad H_{\\text{max}} = h_0 + \\frac{v_0^2 \\sin^2\\theta}{2g}',
     path: '/praktikum/sma/gerak-parabola',
-    tags: ['SMA', 'Kinematika', 'Parabola', 'Vektor', 'Grafik']
+    tags: ['SMA', 'Fisika', 'Kinematika', 'Parabola', 'Vektor', 'Grafik']
   },
   {
     id: 'hukum-newton',
@@ -105,7 +117,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     badgeColor: 'from-blue-600 to-cyan-500',
     formula: 'a = \\frac{\\sum F}{m} = \\frac{F - \\mu_k m g}{m}',
     path: '/praktikum/sma/hukum-newton',
-    tags: ['SMA', 'Dinamika', 'Newton', 'Gaya Gesek', 'Percepatan']
+    tags: ['SMA', 'Fisika', 'Dinamika', 'Newton', 'Gaya Gesek', 'Percepatan']
   },
   {
     id: 'titrasi-asam-basa',
@@ -121,6 +133,30 @@ export const SIMULATION_LIST: SimulationItem[] = [
     tags: ['SMA', 'Kimia', 'Titrasi', 'pH', 'Stokiometri']
   },
   {
+    id: 'reaksi-laju-kimia',
+    title: 'Kinetika Kimia & Laju Reaksi',
+    level: 'SMA',
+    subject: 'Kimia',
+    focus: 'Analisis Data & Rumus',
+    description: 'Pengaruh suhu, konsentrasi pereaksi, dan katalisator terhadap frekuensi tumbukan molekul efektif & energi aktivasi (Arrhenius).',
+    iconName: 'FlaskConical',
+    badgeColor: 'from-rose-500 to-pink-600',
+    formula: 'v = k [A]^m [B]^n, \\quad k = A \\cdot e^{-\\frac{E_a}{R T}}',
+    tags: ['SMA', 'Kimia', 'Laju Reaksi', 'Kinetika', 'Katalis', 'Arrhenius']
+  },
+  {
+    id: 'struktur-sel-osmosis',
+    title: 'Transpor Membran: Osmosis & Difusi Sel',
+    level: 'SMA',
+    subject: 'Biologi',
+    focus: 'Analisis Data & Rumus',
+    description: 'Visualisasi pergerakan molekul air menembus membran semipermeabel pada larutan Hipertonis, Isotonis, dan Hipotonis (Plasmolisis & Turgid).',
+    iconName: 'Microscope',
+    badgeColor: 'from-teal-600 to-emerald-500',
+    formula: '\\Psi = \\Psi_s + \\Psi_p, \\quad \\pi = M R T',
+    tags: ['SMA', 'Biologi', 'Osmosis', 'Sel', 'Membran', 'Plasmolisis']
+  },
+  {
     id: 'listrik-ac',
     title: 'Rangkaian Listrik AC R-L-C',
     level: 'SMA',
@@ -131,6 +167,110 @@ export const SIMULATION_LIST: SimulationItem[] = [
     badgeColor: 'from-cyan-500 to-blue-600',
     formula: 'Z = \\sqrt{R^2 + (X_L - X_C)^2}, \\quad \\tan\\phi = \\frac{X_L - X_C}{R}',
     path: '/praktikum/sma/rangkaian-rlc',
-    tags: ['SMA', 'Listrik AC', 'RLC', 'Impedansi', 'Gelombang']
+    tags: ['SMA', 'Fisika', 'Listrik AC', 'RLC', 'Impedansi', 'Gelombang']
+  },
+  {
+    id: 'tumbukan-momentum',
+    title: 'Simulasi Tumbukan & Kekekalan Momentum',
+    level: 'SMA',
+    subject: 'Fisika',
+    focus: 'Analisis Data & Rumus',
+    description: 'Uji coba koefisien restitusi (e), hukum kekekalan momentum, dan hilangnya Energi Kinetik pada tumbukan 1 dimensi.',
+    iconName: 'Zap',
+    badgeColor: 'from-red-500 to-rose-600',
+    formula: 'm_1 v_1 + m_2 v_2 = m_1 v_1\' + m_2 v_2\', \\quad e = -\\frac{v_2\' - v_1\'}{v_2 - v_1}',
+    path: '/praktikum/sma/tumbukan',
+    tags: ['SMA', 'Fisika', 'Momentum', 'Tumbukan', 'Impuls', 'Energi Kinetik', 'Restitusi']
+  },
+  {
+    id: 'gerak-harmonik',
+    title: 'Laboratorium Gerak Harmonik Sederhana',
+    level: 'SMA',
+    subject: 'Fisika',
+    focus: 'Analisis Data & Rumus',
+    description: 'Gabungan animasi fisik SVG & Canvas real-time untuk mempelajari ayunan bandul matematis dan getaran pegas.',
+    iconName: 'Activity',
+    badgeColor: 'from-blue-600 to-emerald-500',
+    formula: 'T_{\\text{bandul}} = 2\\pi \\sqrt{\\frac{L}{g}}, \\quad T_{\\text{pegas}} = 2\\pi \\sqrt{\\frac{m}{k}}',
+    path: '/praktikum/sma/gerak-harmonik',
+    tags: ['SMA', 'Fisika', 'Getaran', 'Bandul', 'Pegas', 'Periode', 'Harmonik']
+  },
+  {
+    id: 'interferensi-celah-ganda',
+    title: 'Interferensi Celah Ganda Young',
+    level: 'SMA',
+    subject: 'Fisika',
+    focus: 'Analisis Data & Rumus',
+    description: 'Visualisasi pola pita terang & gelap gelombang cahaya laser dengan konversi spektrum warna nm ke RGB secara presisi.',
+    iconName: 'Waves',
+    badgeColor: 'from-blue-500 to-emerald-400',
+    formula: '\\Delta y = \\frac{\\lambda \\cdot L}{d}, \\quad d \\sin\\theta = n \\lambda',
+    path: '/praktikum/sma/interferensi-celah-ganda',
+    tags: ['SMA', 'Fisika', 'Optika', 'Gelombang', 'Interferensi', 'Young', 'Laser']
+  },
+  {
+    id: 'efek-doppler',
+    title: 'Simulasi Efek Doppler Gelombang Bunyi',
+    level: 'SMA',
+    subject: 'Fisika',
+    focus: 'Analisis Data & Rumus',
+    description: 'Animasi riak gelombang bunyi interaktif untuk menganalisis perubahan frekuensi terdengar (fp) akibat kecepatan relatif sumber & pendengar.',
+    iconName: 'Activity',
+    badgeColor: 'from-amber-500 to-red-500',
+    formula: 'f_p = f_s \\cdot \\frac{v \\pm v_p}{v \\mp v_s}',
+    path: '/praktikum/sma/efek-doppler',
+    tags: ['SMA', 'Fisika', 'Gelombang', 'Bunyi', 'Doppler', 'Frekuensi', 'Akustik']
+  },
+  {
+    id: 'siklus-carnot',
+    title: 'Simulasi Mesin Termal Carnot',
+    level: 'SMA',
+    subject: 'Fisika',
+    focus: 'Analisis Data & Rumus',
+    description: 'Diagram P-V interaktif dan animasi piston silinder gas untuk mempelajari 4 langkah siklus Carnot & efisiensi termal.',
+    iconName: 'Flame',
+    badgeColor: 'from-red-500 to-amber-500',
+    formula: '\\eta = \\left( 1 - \\frac{T_C}{T_H} \\right) \\times 100\\%',
+    path: '/praktikum/sma/siklus-carnot',
+    tags: ['SMA', 'Fisika', 'Termodinamika', 'Carnot', 'Efisiensi', 'Kalor', 'Piston']
+  },
+  {
+    id: 'mekanika-fluida',
+    title: 'Laboratorium Mekanika Fluida',
+    level: 'SMA',
+    subject: 'Fisika',
+    focus: 'Analisis Data & Rumus',
+    description: 'Simulasi Statika (Hukum Archimedes & Gaya Apung) dan Dinamika Fluida (Tabung Venturi, Kontinuitas, & Asas Bernoulli).',
+    iconName: 'Waves',
+    badgeColor: 'from-sky-500 to-teal-500',
+    formula: 'F_a = \\rho_f V_t g, \\quad A_1 v_1 = A_2 v_2',
+    path: '/praktikum/sma/mekanika-fluida',
+    tags: ['SMA', 'Fisika', 'Fluida', 'Archimedes', 'Bernoulli', 'Venturi', 'Gaya Apung']
+  },
+  {
+    id: 'efek-fotolistrik',
+    title: 'Eksperimen Efek Fotolistrik',
+    level: 'SMA',
+    subject: 'Fisika',
+    focus: 'Analisis Data & Rumus',
+    description: 'Sistem partikel kuantum untuk mempelajari penembakan foton cahaya pada katoda logam dan pelepasan elektron foto (Einstein).',
+    iconName: 'Sun',
+    badgeColor: 'from-amber-500 to-yellow-400',
+    formula: 'E = \\frac{hc}{\\lambda}, \\quad E_k = E - W_0',
+    path: '/praktikum/sma/efek-fotolistrik',
+    tags: ['SMA', 'Fisika', 'Kuantum', 'Fotolistrik', 'Foton', 'Elektron', 'Einstein']
+  },
+  {
+    id: 'genetika-mendel',
+    title: 'Simulasi Genetika Mendel & Uji Chi-Square',
+    level: 'SMA',
+    subject: 'Biologi',
+    focus: 'Analisis Data & Rumus',
+    description: 'Generator acak persilangan monohibrid & dihibrid ercis, perbandingan rasio fenotipe, dan uji independensi Chi-Square.',
+    iconName: 'Leaf',
+    badgeColor: 'from-emerald-600 to-green-500',
+    formula: '\\chi^2 = \\sum \\frac{(O - E)^2}{E}',
+    path: '/praktikum/sma/genetika-mendel',
+    tags: ['SMA', 'Biologi', 'Genetika', 'Mendel', 'Monohibrid', 'Dihibrid', 'Chi-Square']
   }
 ];
