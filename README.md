@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Future Science Lab - LABSAINS 🧪✨
 
-## Getting Started
+Platform Simulasi Praktikum Virtual Interaktif Berbasis AI dan Formulasi Presisi LaTeX untuk Tingkat Pendidikan SD, SMP, dan SMA.
 
-First, run the development server:
+![LABSAINS Banner](public/images/lab_hero_banner.jpg)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Fitur Utama
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Kurikulum Terstruktur Berdasarkan Tingkat Pendidikan**:
+  - **SD (Pengenalan & Visual)**: Siklus Air, Magnet Sederhana, Mengapung & Tenggelam.
+  - **SMP (Hubungan Antar Variabel)**: Tuas / Pengungkit, Pemuaian Termal Logam, Pembentukan Bayangan Cermin & Lensa.
+  - **SMA (Analisis Data & Rumus LaTeX)**: Gerak Parabola, Hukum II Newton & Gaya Gesek, Titrasi Asam Basa, Rangkaian Listrik AC R-L-C.
+- **Formulasi Presisi KaTeX (LaTeX)**: Render notasi matematika & kimia ilmiah standar publikasi sains.
+- **Mesin Visual 3D & Canvas Vector**: Peluncur Roket Sci-Fi, Plasma Orb, Drone Eksperimental, Vektor Kecepatan Real-time, dan Efek Semburan Api.
+- **Konektivitas Supabase**: Integrasi database dan autentikasi backend Supabase SDK.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Teknologi yang Digunakan
 
-## Learn More
+- **Framework**: [Next.js 16 (App Router)](https://nextjs.org/)
+- **Bahasa**: TypeScript
+- **Styling**: Tailwind CSS v4 & Glassmorphism UI
+- **Render Matematika**: KaTeX (`katex`)
+- **Backend & Database**: Supabase (`@supabase/supabase-js`)
+- **Ikon**: Lucide React (`lucide-react`)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 💻 Cara Menjalankan Proyek Secara Lokal
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Clone repositori**:
+   ```bash
+   git clone https://github.com/gkhabibi1/future-science-lab.git
+   cd future-science-lab
+   ```
 
-## Deploy on Vercel
+2. **Instal dependensi**:
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Jalankan server pengembangan**:
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **Buka di peramban (browser)**:
+   Navigasikan ke [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 📝 Lisensi
+Lisensi MIT © 2026 LABSAINS Future Science Lab.
