@@ -127,6 +127,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'Activity',
     badgeColor: 'from-cyan-500 to-blue-600',
     formula: 'Z = \\sqrt{R^2 + (X_L - X_C)^2}, \\quad \\tan\\phi = \\frac{X_L - X_C}{R}',
+    path: '/praktikum/sma/rangkaian-rlc',
     tags: ['SMA', 'Listrik AC', 'RLC', 'Impedansi', 'Gelombang']
   }
 ];
