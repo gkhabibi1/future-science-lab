@@ -101,6 +101,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'Zap',
     badgeColor: 'from-blue-600 to-cyan-500',
     formula: 'a = \\frac{\\sum F}{m} = \\frac{F - \\mu_k m g}{m}',
+    path: '/praktikum/sma/hukum-newton',
     tags: ['SMA', 'Dinamika', 'Newton', 'Gaya Gesek', 'Percepatan']
   },
   {
