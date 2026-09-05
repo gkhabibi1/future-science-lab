@@ -262,7 +262,7 @@ export default function ParallaxHero({ onExploreClick, totalSimulations }: Paral
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-tight">
             Laboratorium Virtual <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-amber-300 drop-shadow-[0_10px_25px_rgba(6,182,212,0.4)]">
-              Sains & Komputasi AI
+              Sains
             </span>
           </h1>
           <p className="text-slate-300 text-xs sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-normal px-2">
