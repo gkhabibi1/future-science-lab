@@ -149,8 +149,11 @@ export default function Home() {
               <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white flex items-center gap-2">
                 Simulasi Praktikum Sains Virtual
               </h1>
-              <p className="text-xs text-slate-400 font-medium">
-                Laboratorium Eksperimen Digital Interaktif • Fisika, Kimia & Biologi
+              <p className="text-xs font-semibold text-slate-400 mt-0.5 flex items-center gap-1.5">
+                <span>By</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-300 font-bold">
+                  Gilang &amp; Yashinta
+                </span>
               </p>
             </div>
           </div>
@@ -389,6 +392,12 @@ export default function Home() {
             <span className="font-bold text-slate-400">LABSAINS Virtual Laboratory</span>
           </div>
           <p>© 2026 LABSAINS - Platform Simulasi Praktikum Virtual Interaktif (Fisika, Kimia, Biologi).</p>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-800 text-[11px] text-slate-400">
+            <span>Crafted with passion •</span>
+            <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-300">
+              By Gilang &amp; Yashinta
+            </span>
+          </div>
         </footer>
       </div>
     </div>

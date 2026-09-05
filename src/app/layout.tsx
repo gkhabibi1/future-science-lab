@@ -16,9 +16,12 @@ export const metadata: Metadata = {
   title: "LABSAINS | Simulasi Praktikum Virtual Sains Interaktif",
   description: "Platform laboratorium virtual interaktif berbasis AI untuk praktikum Fisika, Kimia, dan Biologi (SD, SMP, SMA).",
   icons: {
-    icon: "https://ik.imagekit.io/e2yna5qg8/ChatGPT%20Image%20Sep%205,%202026,%2011_59_16%20AM_11zon.png",
-    shortcut: "https://ik.imagekit.io/e2yna5qg8/ChatGPT%20Image%20Sep%205,%202026,%2011_59_16%20AM_11zon.png",
-    apple: "https://ik.imagekit.io/e2yna5qg8/ChatGPT%20Image%20Sep%205,%202026,%2011_59_16%20AM_11zon.png",
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon.png', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/favicon.png',
   },
 };
 
