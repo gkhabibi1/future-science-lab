@@ -129,7 +129,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'TestTube',
     badgeColor: 'from-pink-500 to-rose-500',
     formula: 'M_A V_A n_A = M_B V_B n_B \\implies \\text{pH} = -\\log[\\text{H}^+]',
-    path: '/praktikum/sma/titrasi',
+    path: '/praktikum/sma/titrasi-asam-basa',
     tags: ['SMA', 'Kimia', 'Titrasi', 'pH', 'Stokiometri']
   },
   {
@@ -142,7 +142,73 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'FlaskConical',
     badgeColor: 'from-rose-500 to-pink-600',
     formula: 'v = k [A]^m [B]^n, \\quad k = A \\cdot e^{-\\frac{E_a}{R T}}',
+    path: '/praktikum/sma/laju-reaksi',
     tags: ['SMA', 'Kimia', 'Laju Reaksi', 'Kinetika', 'Katalis', 'Arrhenius']
+  },
+  {
+    id: 'kesetimbangan-le-chatelier',
+    title: 'Azas Le Chatelier & Kesetimbangan Gas',
+    level: 'SMA',
+    subject: 'Kimia',
+    focus: 'Analisis Data & Rumus',
+    description: 'Eksperimen tabung suntik piston N2O4 (bening) ⇌ 2 NO2 (cokelat merah) dengan manipulasi volume, tekanan, dan temperatur.',
+    iconName: 'FlaskConical',
+    badgeColor: 'from-amber-500 to-orange-600',
+    formula: '\\text{N}_2\\text{O}_4(g) \\rightleftharpoons 2\\text{NO}_2(g), \\quad \\Delta H = +57.2\\text{ kJ}',
+    path: '/praktikum/sma/le-chatelier',
+    tags: ['SMA', 'Kimia', 'Kesetimbangan', 'Le Chatelier', 'Gas', 'Piston', 'Tekanan']
+  },
+  {
+    id: 'larutan-penyangga',
+    title: 'Larutan Penyangga (Buffer Solution)',
+    level: 'SMA',
+    subject: 'Kimia',
+    focus: 'Analisis Data & Rumus',
+    description: 'Uji komparatif ketahanan pH: Air Murni vs Larutan Penyangga Asetat terhadap penambahan asam kuat (HCl) dan basa kuat (NaOH).',
+    iconName: 'FlaskConical',
+    badgeColor: 'from-emerald-500 to-teal-600',
+    formula: '\\text{pH} = pK_a + \\log\\frac{[\\text{CH}_3\\text{COO}^-]}{[\\text{CH}_3\\text{COOH}]}',
+    path: '/praktikum/sma/larutan-penyangga',
+    tags: ['SMA', 'Kimia', 'Buffer', 'Penyangga', 'pH', 'Henderson-Hasselbalch']
+  },
+  {
+    id: 'sel-volta-elektrokimia',
+    title: 'Sel Volta & Elektrokimia (Sel Daniell)',
+    level: 'SMA',
+    subject: 'Kimia',
+    focus: 'Analisis Data & Rumus',
+    description: 'Simulasi sirkuit sel elektrokimia spontan, voltmeter digital virtual, jembatan garam, dan aliran elektron dari anode ke katode.',
+    iconName: 'Zap',
+    badgeColor: 'from-amber-500 to-yellow-400',
+    formula: 'E^\\circ_{\\text{sel}} = E^\\circ_{\\text{katode}} - E^\\circ_{\\text{anode}}',
+    path: '/praktikum/sma/sel-volta',
+    tags: ['SMA', 'Kimia', 'Sel Volta', 'Elektrokimia', 'Redoks', 'Daniell', 'Voltmeter']
+  },
+  {
+    id: 'hukum-faraday-elektrolisis',
+    title: 'Hukum Faraday & Sel Elektrolisis',
+    level: 'SMA',
+    subject: 'Kimia',
+    focus: 'Analisis Data & Rumus',
+    description: 'Kuantifikasi massa endapan katode, pelapisan logam (electroplating), dan pembentukan gas anode berdasarkan kuat arus dan waktu.',
+    iconName: 'Scale',
+    badgeColor: 'from-amber-400 to-orange-500',
+    formula: 'w = \\frac{e \\cdot I \\cdot t}{96500} = \\frac{A_r}{n} \\cdot \\frac{I \\cdot t}{96500}',
+    path: '/praktikum/sma/hukum-faraday',
+    tags: ['SMA', 'Kimia', 'Faraday', 'Elektrolisis', 'Elektroplating', 'Stoikiometri', 'Massa']
+  },
+  {
+    id: 'geometri-molekul-vsepr',
+    title: 'Geometri Molekul 3D & Teori VSEPR',
+    level: 'SMA',
+    subject: 'Kimia',
+    focus: 'Analisis Data & Rumus',
+    description: 'Visualisasi 3D proyeksi isometrik molekul, rotasi bebas 360°, analisis domain elektron (PEI/PEB), sudut ikatan, dan kepolaran.',
+    iconName: 'Atom',
+    badgeColor: 'from-teal-400 to-indigo-500',
+    formula: '\\text{AX}_m\\text{E}_n, \\quad \\text{Tolakan: PEB-PEB} > \\text{PEB-PEI} > \\text{PEI-PEI}',
+    path: '/praktikum/sma/geometri-molekul-vsepr',
+    tags: ['SMA', 'Kimia', 'VSEPR', 'Molekul', '3D', 'Hibridisasi', 'PEB', 'PEI', 'Ikatan']
   },
   {
     id: 'struktur-sel-osmosis',
@@ -154,7 +220,34 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'Microscope',
     badgeColor: 'from-teal-600 to-emerald-500',
     formula: '\\Psi = \\Psi_s + \\Psi_p, \\quad \\pi = M R T',
+    path: '/praktikum/sma/osmosis-difusi',
     tags: ['SMA', 'Biologi', 'Osmosis', 'Sel', 'Membran', 'Plasmolisis']
+  },
+  {
+    id: 'aktivitas-enzim-katalase',
+    title: 'Aktivitas Enzim Katalase & Metabolisme',
+    level: 'SMA',
+    subject: 'Biologi',
+    focus: 'Analisis Data & Rumus',
+    description: 'Penguraian hidrogen peroksida (2 H2O2 -> 2 H2O + O2) oleh enzim katalase hati terhadap variasi temperatur, pH, dan uji nyala bara api.',
+    iconName: 'Leaf',
+    badgeColor: 'from-emerald-500 to-teal-400',
+    formula: '2\\text{H}_2\\text{O}_2 \\xrightarrow{\\text{Katalase}} 2\\text{H}_2\\text{O} + \\text{O}_2\\uparrow',
+    path: '/praktikum/sma/aktivitas-enzim-katalase',
+    tags: ['SMA', 'Biologi', 'Enzim', 'Katalase', 'Denaturasi', 'Metabolisme', 'pH', 'Suhu']
+  },
+  {
+    id: 'uji-ingenhousz',
+    title: 'Fotosintesis: Uji Ingenhousz (Hydrilla)',
+    level: 'SMA',
+    subject: 'Biologi',
+    focus: 'Analisis Data & Rumus',
+    description: 'Eksperimen pembuktian produksi gas O2 pada fotosintesis Hydrilla verticillata terhadap intensitas cahaya, jarak lampu, dan penambahan NaHCO3.',
+    iconName: 'Sun',
+    badgeColor: 'from-emerald-400 to-yellow-500',
+    formula: '6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\xrightarrow{h\\nu} \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2\\uparrow',
+    path: '/praktikum/sma/uji-ingenhousz',
+    tags: ['SMA', 'Biologi', 'Fotosintesis', 'Ingenhousz', 'Hydrilla', 'Oksigen', 'Cahaya', 'NaHCO3']
   },
   {
     id: 'listrik-ac',
@@ -270,7 +363,20 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'Leaf',
     badgeColor: 'from-emerald-600 to-green-500',
     formula: '\\chi^2 = \\sum \\frac{(O - E)^2}{E}',
-    path: '/praktikum/sma/genetika-mendel',
+    path: '/praktikum/sma/persilangan-mendel',
     tags: ['SMA', 'Biologi', 'Genetika', 'Mendel', 'Monohibrid', 'Dihibrid', 'Chi-Square']
+  },
+  {
+    id: 'hardy-weinberg',
+    title: 'Hukum Hardy-Weinberg & Mikroevolusi',
+    level: 'SMA',
+    subject: 'Biologi',
+    focus: 'Analisis Data & Rumus',
+    description: 'Simulasi multi-generasi dinamika frekuensi alel, genetic drift pada populasi pulau terisolasi, dan koefisien seleksi alam terhadap fenotipe.',
+    iconName: 'Activity',
+    badgeColor: 'from-teal-400 to-cyan-500',
+    formula: 'p^2 + 2pq + q^2 = 1, \\quad w_{aa} = 1 - s',
+    path: '/praktikum/sma/hardy-weinberg',
+    tags: ['SMA', 'Biologi', 'Evolusi', 'Hardy-Weinberg', 'Genetic Drift', 'Seleksi Alam', 'Alel']
   }
 ];

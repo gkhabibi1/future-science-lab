@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { SIMULATION_LIST } from '@/data/simulations';
 import { SimulationItem, EducationLevel, SubjectCategory } from '@/types/simulation';
 import SimulationRunner from '@/components/SimulationRunner';
+import ParallaxHero from '@/components/ParallaxHero';
 import MathFormula from '@/components/MathFormula';
 import {
   CloudRain,
@@ -160,32 +161,21 @@ export default function Home() {
           </main>
         ) : (
           <main className="mt-8 space-y-8">
-            {/* Hero AI Generated Visual Banner */}
-            <div className="relative overflow-hidden rounded-3xl border border-slate-800/80 shadow-2xl group min-h-[300px] flex items-center">
-              <Image
-                src="/images/lab_hero_banner.jpg"
-                alt="AI Science Laboratory Banner"
-                fill
-                priority
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-60"
+            {/* Parallax Hero (Inspired by wagerfield/parallax) */}
+            <div id="catalog-section">
+              <ParallaxHero 
+                totalSimulations={SIMULATION_LIST.length}
+                onExploreClick={() => {
+                  const filterEl = document.getElementById('filter-section');
+                  if (filterEl) {
+                    filterEl.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
-
-              <div className="relative z-10 p-8 sm:p-12 max-w-2xl space-y-4">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/20 backdrop-blur border border-cyan-400/40 text-cyan-300 text-xs font-bold shadow-lg">
-                  <Sparkles size={14} className="text-amber-400" /> Virtual Science Lab (Fisika, Kimia, Biologi)
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight drop-shadow-md">
-                  Eksplorasi Sains Digital Interaktif Berbasis AI
-                </h2>
-                <p className="text-slate-200 text-sm sm:text-base leading-relaxed drop-shadow">
-                  Pilih kurikulum simulasi berdasarkan disiplin ilmu (<strong className="text-blue-300">Fisika</strong>, <strong className="text-pink-300">Kimia</strong>, <strong className="text-emerald-300">Biologi</strong>) dan jenjang pendidikan (<strong className="text-cyan-300">SD</strong>, <strong className="text-amber-300">SMP</strong>, <strong className="text-purple-300">SMA</strong>).
-                </p>
-              </div>
             </div>
 
             {/* Filter Section: Mata Pelajaran & Level */}
-            <div className="space-y-4">
+            <div id="filter-section" className="space-y-4 pt-4">
               
               {/* Row 1: Subject Category Filters (Pemisah Fisika, Biologi, Kimia) */}
               <div className="space-y-2">
