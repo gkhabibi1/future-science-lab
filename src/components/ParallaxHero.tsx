@@ -130,15 +130,65 @@ export default function ParallaxHero({ onExploreClick, totalSimulations }: Paral
         />
       </div>
 
-      {/* ================= LAYER 1: Deep Distant Orbit Rings & Constellations (Depth 0.15) ================= */}
+      {/* ================= LAYER 1: Deep Distant Orbit Rings & Revolving Atoms (Depth 0.15) ================= */}
       <div 
-        className="absolute inset-0 pointer-events-none flex items-center justify-center"
+        className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden"
         style={getLayerStyle(0.15)}
       >
-        {/* Giant Outer Orbit Circle */}
-        <div className="w-[620px] h-[620px] md:w-[780px] md:h-[780px] rounded-full border border-cyan-500/10 animate-[spin_120s_linear_infinite]" />
-        {/* Mid Ellipse */}
-        <div className="absolute w-[440px] h-[440px] md:w-[560px] md:h-[560px] rounded-full border border-dashed border-indigo-400/15 animate-[spin_80s_linear_infinite_reverse]" />
+        {/* Giant Outer Orbit Circle (Solid-Dash Hybrid) */}
+        <div className="relative w-[620px] h-[620px] md:w-[820px] md:h-[820px] rounded-full border border-cyan-500/15 animate-[spin_100s_linear_infinite]">
+          {/* Planet / Heavy Ion on outer orbit */}
+          <div className="absolute -top-2 left-1/2 -translate-x-1/2 flex items-center justify-center">
+            <div className="w-5 h-5 rounded-full bg-cyan-400 border-2 border-white shadow-[0_0_20px_rgba(6,182,212,0.9)] animate-pulse" />
+            <div className="absolute w-10 h-10 rounded-full bg-cyan-500/20 blur-sm" />
+          </div>
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center justify-center">
+            <div className="w-4 h-4 rounded-full bg-teal-300 border border-white shadow-[0_0_15px_rgba(45,212,191,0.8)]" />
+          </div>
+        </div>
+
+        {/* Primary Dashed Orbit Ring with Fast Revolving Atoms & Electrons */}
+        <div className="absolute w-[460px] h-[460px] md:w-[600px] md:h-[600px] rounded-full border-2 border-dashed border-cyan-400/25 animate-[spin_35s_linear_infinite_reverse]">
+          {/* Orbiting Atom Alpha (Glowing Cyan Electron) */}
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex items-center justify-center group">
+            <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-500 border-2 border-white shadow-[0_0_22px_rgba(34,211,238,1)] flex items-center justify-center">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+            </div>
+            {/* Glowing tail / orbital flare */}
+            <div className="absolute -right-6 w-12 h-2 bg-gradient-to-l from-transparent via-cyan-400/40 to-cyan-300 rounded-full blur-[1px]" />
+          </div>
+
+          {/* Orbiting Atom Beta (Glowing Amber Positron) at 180 deg */}
+          <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center justify-center">
+            <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-300 border-2 border-white shadow-[0_0_20px_rgba(251,191,36,1)] flex items-center justify-center">
+              <span className="w-1.5 h-1.5 rounded-full bg-white" />
+            </div>
+            <div className="absolute -left-6 w-10 h-1.5 bg-gradient-to-r from-transparent via-amber-400/40 to-amber-300 rounded-full blur-[1px]" />
+          </div>
+        </div>
+
+        {/* Tilted Elliptical Atomic Electron Ring (3D Ellipse Orbit) */}
+        <div 
+          className="absolute w-[360px] h-[360px] md:w-[480px] md:h-[480px] rounded-full border border-dashed border-emerald-400/30 animate-[spin_24s_linear_infinite]"
+          style={{ transform: 'rotateX(68deg) rotateY(25deg)' }}
+        >
+          {/* Orbiting Electron Particle on tilted plane */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center justify-center">
+            <div className="w-4 h-4 rounded-full bg-emerald-400 border border-white shadow-[0_0_18px_rgba(52,211,153,1)] animate-ping" />
+            <div className="w-3 h-3 rounded-full bg-emerald-300 border border-white shadow-[0_0_14px_rgba(52,211,153,0.9)]" />
+          </div>
+        </div>
+
+        {/* Counter Tilted Atomic Electron Ring (Second 3D Axis) */}
+        <div 
+          className="absolute w-[340px] h-[340px] md:w-[450px] md:h-[450px] rounded-full border border-dashed border-pink-400/25 animate-[spin_20s_linear_infinite_reverse]"
+          style={{ transform: 'rotateX(-65deg) rotateY(35deg)' }}
+        >
+          {/* Orbiting Quantum Particle */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center justify-center">
+            <div className="w-3.5 h-3.5 rounded-full bg-pink-400 border border-white shadow-[0_0_16px_rgba(244,114,182,1)]" />
+          </div>
+        </div>
       </div>
 
       {/* ================= LAYER 2: Floating Science Particles & Constellation Dots (Depth 0.35) ================= */}
