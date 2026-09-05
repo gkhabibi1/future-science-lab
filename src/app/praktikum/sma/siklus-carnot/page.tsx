@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Flame, Snowflake, Activity, Zap, ArrowLeft, Play, Pause, RotateCcw } from 'lucide-react';
+import { Flame, Snowflake, Activity, Zap, ArrowLeft, Play, Pause, RotateCcw, Info, Sparkles } from 'lucide-react';
 import MathFormula from '@/components/MathFormula';
 
 export default function CarnotSimulation() {
@@ -12,10 +12,12 @@ export default function CarnotSimulation() {
   const [isSimulating, setIsSimulating] = useState(true);
 
   // Pastikan Tc tidak pernah melebihi Th
-  useEffect(() => { if (Tc >= Th) setTc(Th - 50); }, [Th, Tc]);
+  useEffect(() => { 
+    if (Tc >= Th) setTc(Th - 50); 
+  }, [Th, Tc]);
 
   // --- STATE ANIMASI ---
-  // progress berjalan dari 0 sampai 4 (merepresentasikan 4 langkah Carnot)
+  // progress berjalan dari 0 sampai 4 (4 langkah siklus Carnot)
   const [progress, setProgress] = useState(0); 
   const requestRef = useRef<number | null>(null);
 
@@ -27,7 +29,7 @@ export default function CarnotSimulation() {
     const animate = () => {
       if (isSimulating) {
         setProgress((prev) => {
-          let next = prev + 0.015; // Kecepatan siklus mesin
+          let next = prev + 0.015;
           if (next >= 4) next = 0;
           return next;
         });
@@ -44,45 +46,51 @@ export default function CarnotSimulation() {
     setProgress(0);
   };
 
+  const applyPreset = (newTh: number, newTc: number) => {
+    setTh(newTh);
+    setTc(newTc);
+    setProgress(0);
+  };
+
   // --- LOGIKA VISUAL: Diagram P-V & Piston ---
   let phase = 0; // 0=Iso Exp, 1=Adia Exp, 2=Iso Comp, 3=Adia Comp
   let phaseName = "";
   let pistonY = 0; // Posisi piston (Volume)
-  let heatColor = "#94a3b8"; // Warna default (Adiabatik)
+  let heatColor = "#94a3b8"; 
 
   if (progress < 1) {
     phase = 0;
-    phaseName = "Ekspansi Isotermal (Gas menyerap kalor Q_H dari Reservoir Panas)";
-    pistonY = progress; // Piston naik (volume bertambah)
-    heatColor = "#ef4444"; // Merah (Reservoir Panas)
+    phaseName = "1. Ekspansi Isotermal (Menyerap Q_H pada T_H konstan)";
+    pistonY = progress; 
+    heatColor = "#f43f5e"; // Merah
   } else if (progress < 2) {
     phase = 1;
-    phaseName = "Ekspansi Adiabatik (Gas memuai tanpa pertukaran kalor)";
+    phaseName = "2. Ekspansi Adiabatik (Memuai terisolasi, suhu turun ke T_C)";
     pistonY = 1 + (progress - 1); 
-    heatColor = "#94a3b8"; // Abu-abu (Terisolasi)
+    heatColor = "#94a3b8"; // Abu-abu netral
   } else if (progress < 3) {
     phase = 2;
-    phaseName = "Kompresi Isotermal (Gas melepas kalor Q_C ke Reservoir Dingin)";
-    pistonY = 2 - (progress - 2); // Piston turun (volume berkurang)
-    heatColor = "#3b82f6"; // Biru (Reservoir Dingin)
+    phaseName = "3. Kompresi Isotermal (Melepas Q_C ke reservoir dingin pada T_C)";
+    pistonY = 2 - (progress - 2); 
+    heatColor = "#38bdf8"; // Biru dingin
   } else {
     phase = 3;
-    phaseName = "Kompresi Adiabatik (Suhu gas kembali ke T_H)";
+    phaseName = "4. Kompresi Adiabatik (Dimampatkan terisolasi, suhu naik ke T_H)";
     pistonY = 1 - (progress - 3);
     heatColor = "#94a3b8"; 
   }
 
-  // Koordinat SVG P-V (Disederhanakan untuk visualisasi bentuk Carnot)
+  // Koordinat SVG P-V
   const getPVPoints = () => {
-    const p1 = 30 + (1500 - Th) * 0.05; // Titik A (P max, V min)
-    const p2 = p1 + 40;                 // Titik B 
-    const p3 = p2 + 70 + (Th - Tc) * 0.1; // Titik C (P min, V max)
-    const p4 = p1 + 70 + (Th - Tc) * 0.1; // Titik D
+    const p1 = 30 + (1500 - Th) * 0.04; 
+    const p2 = p1 + 35;                 
+    const p3 = p2 + 65 + (Th - Tc) * 0.08; 
+    const p4 = p1 + 65 + (Th - Tc) * 0.08; 
     return {
-      A: { x: 50, y: p1 },
-      B: { x: 140, y: p2 },
-      C: { x: 240, y: p3 },
-      D: { x: 120, y: p4 },
+      A: { x: 55, y: p1 },
+      B: { x: 155, y: p2 },
+      C: { x: 255, y: p3 },
+      D: { x: 135, y: p4 },
     };
   };
   const pts = getPVPoints();
@@ -98,161 +106,319 @@ export default function CarnotSimulation() {
   const dot = getDotPos();
 
   return (
-    <div className="min-h-screen bg-slate-50 p-6 sm:p-8 font-sans">
+    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 sm:p-8 font-sans selection:bg-amber-500 selection:text-white">
       <div className="max-w-6xl mx-auto space-y-6">
         
-        {/* Header & Navigasi */}
-        <header>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-200/80 hover:bg-slate-300 text-slate-800 text-xs font-bold transition mb-3 border border-slate-300 shadow-sm"
-          >
-            <ArrowLeft size={16} />
-            <span>Kembali ke Beranda Praktikum</span>
-          </Link>
-          <h1 className="text-3xl font-extrabold text-slate-900 mb-2">Simulasi Mesin Termal Carnot</h1>
-          <p className="text-slate-500 font-medium">Hukum II Termodinamika, Siklus Ideal &amp; Diagram P-V Real-time</p>
+        {/* TOP NAVIGATION & HEADER */}
+        <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-slate-900/80 p-5 rounded-2xl border border-slate-800 shadow-xl backdrop-blur">
+          <div className="flex items-center gap-4">
+            <Link
+              href="/"
+              className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 transition border border-slate-700 shadow-sm"
+              title="Kembali ke Beranda"
+            >
+              <ArrowLeft size={18} />
+            </Link>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wide text-amber-300 bg-amber-950/80 border border-amber-800">
+                  SMA • Fisika Termodinamika
+                </span>
+                <span className="text-xs text-slate-400 font-medium hidden sm:inline">
+                  Hukum II Termodinamika &amp; Efisiensi Mesin Kalor
+                </span>
+              </div>
+              <h1 className="text-xl sm:text-2xl font-black text-white mt-1">
+                Simulasi Mesin Termal Siklus Carnot
+              </h1>
+              <p className="text-xs text-slate-400 mt-0.5">
+                Diagram P-V dinamis, pergerakan silinder piston gas ideal, dan batas efisiensi reversibel Carnot.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2.5 w-full md:w-auto">
+            <button
+              onClick={() => setIsSimulating(!isSimulating)}
+              className={`px-4 py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition border shadow-sm w-full md:w-auto cursor-pointer ${
+                isSimulating
+                  ? 'bg-amber-600/20 text-amber-300 border-amber-500/50 hover:bg-amber-600/30'
+                  : 'bg-emerald-600 text-white border-emerald-500 hover:bg-emerald-500'
+              }`}
+            >
+              {isSimulating ? <Pause size={15} /> : <Play size={15} fill="currentColor" />}
+              {isSimulating ? 'Jeda Siklus' : 'Lanjutkan Siklus'}
+            </button>
+            <button
+              onClick={handleReset}
+              className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl font-bold text-xs flex items-center justify-center gap-2 border border-slate-700 transition shadow-sm w-full md:w-auto cursor-pointer"
+            >
+              <RotateCcw size={15} /> Reset
+            </button>
+          </div>
         </header>
 
-        {/* Formula Banner */}
-        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-wrap justify-around items-center gap-4 text-xs text-slate-700">
+        {/* BANNER RUMUS TERMODINAMIKA (KaTeX LaTeX) */}
+        <div className="bg-slate-900/60 border border-slate-800/80 p-4 rounded-2xl flex flex-wrap justify-around items-center gap-4 text-xs text-amber-300">
           <div className="flex items-center gap-2">
-            <span className="text-slate-400 font-bold">Efisiensi Maksimum Carnot (\(\eta\)):</span>
+            <span className="text-slate-400 font-semibold">Efisiensi Maksimum Carnot:</span>
             <MathFormula formula="\eta = \left( 1 - \frac{T_C}{T_H} \right) \times 100\%" />
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-slate-400 font-bold">Usaha Bersih (W):</span>
-            <MathFormula formula="W = Q_H - Q_C" />
+            <span className="text-slate-400 font-semibold">Usaha Bersih Siklus:</span>
+            <MathFormula formula="W = Q_H - Q_C = \oint P \, dV" />
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-slate-400 font-semibold">Entropi Siklus Tertutup:</span>
+            <MathFormula formula="\Delta S_{\text{siklus}} = \oint \frac{dQ}{T} = 0" />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* MAIN 4-COLUMN WORKSPACE */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           
-          {/* KONTROL PANEL */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between space-y-6">
-            <div>
-              <h2 className="font-bold mb-6 text-slate-800 border-b pb-3 uppercase tracking-wider text-xs flex items-center gap-2">
-                 <Activity size={18}/> Parameter Sistem
-              </h2>
-              
-              <div className="space-y-6">
-                <div>
-                  <label className="flex justify-between text-sm font-semibold mb-2">
-                    <span className="flex items-center gap-1 text-red-600"><Flame size={16}/> Reservoir Panas (<MathFormula formula="T_H" />)</span>
-                    <span className="text-red-700 font-black font-mono">{Th} K</span>
-                  </label>
-                  <input type="range" min="400" max="1500" step="50" value={Th} onChange={(e) => setTh(Number(e.target.value))} className="w-full accent-red-500 cursor-pointer" />
-                </div>
+          {/* PANEL KONTROL KIRI (1 Kolom) */}
+          <div className="lg:col-span-1 bg-slate-900/90 p-5 rounded-2xl border border-slate-800 space-y-6 h-fit backdrop-blur shadow-xl">
+            <h3 className="font-bold text-white uppercase text-xs tracking-wider border-b border-slate-800 pb-3 flex items-center gap-2">
+              <Activity size={16} className="text-amber-400" /> Suhu Reservoir Termal
+            </h3>
 
-                <div>
-                  <label className="flex justify-between text-sm font-semibold mb-2">
-                    <span className="flex items-center gap-1 text-blue-600"><Snowflake size={16}/> Reservoir Dingin (<MathFormula formula="T_C" />)</span>
-                    <span className="text-blue-700 font-black font-mono">{Tc} K</span>
-                  </label>
-                  <input type="range" min="100" max={Th - 50} step="50" value={Tc} onChange={(e) => setTc(Number(e.target.value))} className="w-full accent-blue-500 cursor-pointer" />
-                </div>
+            {/* Suhu Reservoir Panas Th */}
+            <div className="space-y-2 bg-slate-950/70 p-3.5 rounded-xl border border-rose-900/40">
+              <div className="flex justify-between items-center text-xs">
+                <span className="text-slate-300 font-semibold flex items-center gap-1.5">
+                  <Flame size={14} className="text-rose-400" /> Reservoir Panas (<MathFormula formula="T_H" />):
+                </span>
+                <span className="font-mono text-rose-400 font-bold">{Th} K</span>
+              </div>
+              <input 
+                type="range" min="400" max="1500" step="25" 
+                value={Th} onChange={(e) => setTh(Number(e.target.value))} 
+                className="w-full h-2 bg-slate-800 rounded-lg accent-rose-500 cursor-pointer" 
+              />
+              <div className="flex justify-between text-[10px] font-mono text-slate-500">
+                <span>400 K</span>
+                <span>950 K</span>
+                <span>1500 K</span>
               </div>
             </div>
 
-            <div className="space-y-4">
-              {/* Animation Control Buttons */}
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setIsSimulating(!isSimulating)}
-                  className={`flex-1 py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition ${
-                    isSimulating
-                      ? 'bg-slate-200 hover:bg-slate-300 text-slate-800'
-                      : 'bg-slate-900 hover:bg-black text-white'
-                  }`}
-                >
-                  {isSimulating ? <Pause size={16} /> : <Play size={16} fill="currentColor" />}
-                  {isSimulating ? 'Jeda Siklus' : 'Lanjutkan Siklus'}
-                </button>
-                <button
-                  onClick={handleReset}
-                  className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs flex items-center gap-1 transition border border-slate-200"
-                >
-                  <RotateCcw size={16} /> Reset
-                </button>
+            {/* Suhu Reservoir Dingin Tc */}
+            <div className="space-y-2 bg-slate-950/70 p-3.5 rounded-xl border border-sky-900/40">
+              <div className="flex justify-between items-center text-xs">
+                <span className="text-slate-300 font-semibold flex items-center gap-1.5">
+                  <Snowflake size={14} className="text-sky-400" /> Reservoir Dingin (<MathFormula formula="T_C" />):
+                </span>
+                <span className="font-mono text-sky-400 font-bold">{Tc} K</span>
               </div>
-
-              {/* Efisiensi Result Card */}
-              <div className="bg-amber-50 p-5 rounded-xl border border-amber-200">
-                 <span className="block text-xs font-bold text-amber-500 uppercase mb-2">Efisiensi Termal (\(\eta\))</span>
-                 <div className="flex items-center justify-between">
-                    <span className="text-4xl font-black text-amber-700 font-mono">{efisiensi.toFixed(1)}%</span>
-                    <Zap size={32} className="text-amber-400"/>
-                 </div>
-                 <p className="text-xs text-amber-700 mt-2 font-medium">
-                    Sisa { (100 - efisiensi).toFixed(1) }% energi terbuang ke reservoir dingin sebagai <MathFormula formula="Q_C" />.
-                 </p>
+              <input 
+                type="range" min="100" max={Th - 50} step="25" 
+                value={Tc} onChange={(e) => setTc(Number(e.target.value))} 
+                className="w-full h-2 bg-slate-800 rounded-lg accent-sky-500 cursor-pointer" 
+              />
+              <div className="flex justify-between text-[10px] font-mono text-slate-500">
+                <span>100 K</span>
+                <span>Maks: {Th - 50} K</span>
               </div>
             </div>
+
+            {/* Preset Skenario Mesin */}
+            <div className="space-y-2">
+              <span className="text-[11px] font-semibold text-slate-400 block">Preset Mesin Nyata &amp; Ideal:</span>
+              <div className="grid grid-cols-1 gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => applyPreset(473, 298)}
+                  className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] font-semibold border border-slate-700 transition flex items-center justify-between"
+                >
+                  <span>1. Mesin Uap Klasik (Watt)</span>
+                  <span className="font-mono text-amber-400 text-[9px]">η = 37.0%</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => applyPreset(1200, 300)}
+                  className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] font-semibold border border-slate-700 transition flex items-center justify-between"
+                >
+                  <span>2. Turbina Gas Modern</span>
+                  <span className="font-mono text-emerald-400 text-[9px]">η = 75.0%</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => applyPreset(1500, 150)}
+                  className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] font-semibold border border-slate-700 transition flex items-center justify-between"
+                >
+                  <span>3. Carnot Hipotetis Ekstrem</span>
+                  <span className="font-mono text-cyan-400 text-[9px]">η = 90.0%</span>
+                </button>
+              </div>
+            </div>
+
           </div>
 
-          {/* VISUALISASI DIAGRAM P-V & PISTON */}
-          <div className="lg:col-span-2 space-y-6">
+          {/* AREA KANVAS & DASHBOARD (3 Kolom) */}
+          <div className="lg:col-span-3 space-y-6">
             
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-8 items-center min-h-[350px]">
-               
-               {/* 1. Animasi Silinder Mesin */}
-               <div className="w-full md:w-1/3 flex flex-col items-center">
-                  <span className="text-xs font-bold text-slate-400 uppercase mb-4 tracking-widest">Silinder Gas Piston</span>
-                  <div className="w-24 h-48 border-4 border-slate-700 border-t-0 rounded-b-xl relative overflow-hidden flex flex-col justify-end transition-colors duration-500" style={{ backgroundColor: heatColor + '20' }}>
-                     
-                     {/* Gas Color Fade */}
-                     <div className="absolute inset-0 transition-opacity duration-300" style={{ backgroundColor: heatColor, opacity: 0.35 }}></div>
-                     
-                     {/* Kepala Piston */}
-                     <div 
-                        className="w-full h-4 bg-slate-800 border-t-2 border-slate-600 absolute transition-all duration-75"
-                        style={{ bottom: `${(pistonY / 2) * 100}%` }}
-                     ></div>
-                     
-                     {/* Tangkai Piston */}
-                     <div 
-                        className="w-2 h-40 bg-slate-400 absolute left-1/2 -translate-x-1/2 transition-all duration-75"
-                        style={{ bottom: `${(pistonY / 2) * 100}%` }}
-                     ></div>
-                  </div>
-               </div>
+            {/* Visualisasi Piston & Diagram P-V */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 bg-slate-900/90 p-4 sm:p-6 rounded-2xl border border-slate-800 shadow-2xl backdrop-blur">
+              
+              {/* 1. Animasi Silinder Piston Fisik (4 Kolom) */}
+              <div className="md:col-span-4 flex flex-col items-center justify-between border-b md:border-b-0 md:border-r border-slate-800 pb-4 md:pb-0 md:pr-4">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">
+                  Silinder Piston Gas
+                </span>
+                
+                {/* Tabung Silika Transparan */}
+                <div 
+                  className="w-28 h-56 border-4 border-slate-600 border-t-0 rounded-b-2xl relative overflow-hidden flex flex-col justify-end transition-all duration-300 shadow-inner"
+                  style={{ backgroundColor: `${heatColor}15` }}
+                >
+                  {/* Fluida Gas Ideal dengan Warna Termal */}
+                  <div 
+                    className="absolute inset-0 transition-colors duration-500" 
+                    style={{ backgroundColor: heatColor, opacity: 0.35 }} 
+                  />
 
-               {/* 2. Diagram SVG P-V */}
-               <div className="w-full md:w-2/3 bg-slate-50 border border-slate-200 rounded-xl relative h-full min-h-[250px] flex items-center justify-center p-4">
-                  <div className="absolute top-3 left-4 text-xs font-bold text-slate-400">Tekanan (P)</div>
-                  <div className="absolute bottom-2 right-4 text-xs font-bold text-slate-400">Volume (V)</div>
-                  
-                  <svg width="300" height="230" className="overflow-visible">
-                     {/* Sumbu Koordinat */}
-                     <line x1="20" y1="20" x2="20" y2="210" stroke="#94a3b8" strokeWidth="2" />
-                     <line x1="20" y1="210" x2="280" y2="210" stroke="#94a3b8" strokeWidth="2" />
+                  {/* Kepala Piston Baja */}
+                  <div 
+                    className="w-full h-5 bg-gradient-to-r from-slate-700 via-slate-500 to-slate-700 border-t-2 border-slate-400 absolute transition-all duration-75 shadow-lg rounded-t-sm"
+                    style={{ bottom: `${(pistonY / 2) * 80 + 10}%` }}
+                  />
 
-                     {/* Area Dalam Siklus Carnot (Luas = Usaha Bersih) */}
-                     <path 
-                       d={`M ${pts.A.x} ${pts.A.y} Q ${pts.A.x + 40} ${pts.A.y} ${pts.B.x} ${pts.B.y} Q ${pts.B.x + 30} ${pts.B.y + 40} ${pts.C.x} ${pts.C.y} Q ${pts.C.x - 50} ${pts.C.y} ${pts.D.x} ${pts.D.y} Q ${pts.D.x - 40} ${pts.D.y - 40} ${pts.A.x} ${pts.A.y} Z`} 
-                       fill="#fef3c7" stroke="#fbbf24" strokeWidth="2.5" strokeLinejoin="round" 
-                     />
-                     
-                     {/* Label Titik */}
-                     <text x={pts.A.x - 15} y={pts.A.y + 5} fontSize="12" fontWeight="bold" fill="#1e293b">A</text>
-                     <text x={pts.B.x + 10} y={pts.B.y} fontSize="12" fontWeight="bold" fill="#1e293b">B</text>
-                     <text x={pts.C.x + 5} y={pts.C.y + 15} fontSize="12" fontWeight="bold" fill="#1e293b">C</text>
-                     <text x={pts.D.x - 15} y={pts.D.y + 15} fontSize="12" fontWeight="bold" fill="#1e293b">D</text>
+                  {/* Batang Piston */}
+                  <div 
+                    className="w-3 h-44 bg-gradient-to-b from-slate-400 to-slate-600 absolute left-1/2 -translate-x-1/2 transition-all duration-75 shadow-md"
+                    style={{ bottom: `${(pistonY / 2) * 80 + 10}%` }}
+                  />
+                </div>
 
-                     {/* Titik Berjalan (Tracer) */}
-                     <circle cx={dot.x} cy={dot.y} r="6" fill="#ef4444" stroke="#991b1b" strokeWidth="1.5" className="transition-all duration-75 ease-linear"/>
+                <div className="mt-3 text-center">
+                  <span className="text-[10px] font-mono font-bold text-slate-400">
+                    Volume: <strong className="text-white">{(1 + (pistonY / 2) * 2).toFixed(2)} L</strong>
+                  </span>
+                </div>
+              </div>
+
+              {/* 2. Diagram Koordinat P-V (8 Kolom) */}
+              <div className="md:col-span-8 flex flex-col justify-between">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+                    <Activity size={14} className="text-amber-400" />
+                    Kurva Diagram Tekanan (P) vs Volume (V)
+                  </span>
+                  <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800">
+                    Luas Area = Usaha Bersih (W)
+                  </span>
+                </div>
+
+                <div className="w-full overflow-hidden rounded-xl border border-slate-800 bg-[#020617] p-3 relative h-[240px] flex items-center justify-center">
+                  <div className="absolute top-2 left-3 text-[10px] font-mono font-bold text-slate-500">P (Tekanan) ↑</div>
+                  <div className="absolute bottom-2 right-4 text-[10px] font-mono font-bold text-slate-500">V (Volume) →</div>
+
+                  <svg width="320" height="210" viewBox="0 0 320 210" className="overflow-visible">
+                    {/* Sumbu Axis */}
+                    <line x1="30" y1="15" x2="30" y2="185" stroke="#475569" strokeWidth="2" />
+                    <line x1="30" y1="185" x2="295" y2="185" stroke="#475569" strokeWidth="2" />
+
+                    {/* Siklus Carnot Tertutup */}
+                    <path 
+                      d={`M ${pts.A.x} ${pts.A.y} Q ${pts.A.x + 45} ${pts.A.y} ${pts.B.x} ${pts.B.y} Q ${pts.B.x + 35} ${pts.B.y + 45} ${pts.C.x} ${pts.C.y} Q ${pts.C.x - 55} ${pts.C.y} ${pts.D.x} ${pts.D.y} Q ${pts.D.x - 45} ${pts.D.y - 45} ${pts.A.x} ${pts.A.y} Z`} 
+                      fill="rgba(245, 158, 11, 0.18)" 
+                      stroke="#f59e0b" 
+                      strokeWidth="2.5" 
+                      strokeLinejoin="round" 
+                    />
+
+                    {/* Label Titik Keadaan Termodinamika */}
+                    <text x={pts.A.x - 14} y={pts.A.y + 4} fontSize="11" fontFamily="monospace" fontWeight="bold" fill="#f43f5e">A</text>
+                    <text x={pts.B.x + 8} y={pts.B.y + 2} fontSize="11" fontFamily="monospace" fontWeight="bold" fill="#fbbf24">B</text>
+                    <text x={pts.C.x + 8} y={pts.C.y + 10} fontSize="11" fontFamily="monospace" fontWeight="bold" fill="#38bdf8">C</text>
+                    <text x={pts.D.x - 14} y={pts.D.y + 12} fontSize="11" fontFamily="monospace" fontWeight="bold" fill="#a78bfa">D</text>
+
+                    {/* Titik Status Bergerak (Live Tracer) */}
+                    <circle 
+                      cx={dot.x} 
+                      cy={dot.y} 
+                      r="6" 
+                      fill="#ffffff" 
+                      stroke="#f59e0b" 
+                      strokeWidth="3" 
+                      className="shadow-[0_0_15px_rgba(245,158,11,1)]"
+                    />
                   </svg>
-               </div>
+                </div>
+
+                {/* Banner Status Langkah Siklus Aktif */}
+                <div className="mt-3 bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-center">
+                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-0.5">
+                    Langkah Siklus Aktif
+                  </span>
+                  <span className="text-xs font-bold text-amber-400">
+                    {phaseName}
+                  </span>
+                </div>
+              </div>
+
             </div>
 
-            {/* STATUS PHASE AKTIF */}
-            <div className="bg-slate-800 text-white p-4 rounded-xl border border-slate-700 text-center shadow-md">
-               <span className="block text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Langkah Siklus Aktif</span>
-               <div className="text-base sm:text-lg font-bold text-amber-400">{phaseName}</div>
+            {/* DASHBOARD METRIK EFISIENSI (3 Cards) */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              
+              <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-xl shadow-md">
+                <span className="block text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-1">
+                  Efisiensi Carnot (η)
+                </span>
+                <div className="text-3xl font-black text-amber-400 font-mono">
+                  {efisiensi.toFixed(1)}%
+                </div>
+                <div className="w-full bg-slate-800 h-2 rounded-full mt-2 overflow-hidden border border-slate-700/60">
+                  <div 
+                    className="bg-gradient-to-r from-amber-500 to-orange-400 h-full transition-all duration-300"
+                    style={{ width: `${efisiensi}%` }}
+                  />
+                </div>
+              </div>
+
+              <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-xl shadow-md">
+                <span className="block text-[10px] font-bold text-rose-400 uppercase tracking-wider mb-1">
+                  Reservoir Panas (TH)
+                </span>
+                <div className="text-2xl font-black text-rose-400 font-mono">
+                  {Th} <span className="text-xs font-normal text-slate-400">K</span>
+                </div>
+                <p className="text-[10px] text-slate-400 mt-1 font-mono">
+                  {(Th - 273.15).toFixed(0)}°C (Kalor Masuk QH)
+                </p>
+              </div>
+
+              <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-xl shadow-md">
+                <span className="block text-[10px] font-bold text-sky-400 uppercase tracking-wider mb-1">
+                  Reservoir Dingin (TC)
+                </span>
+                <div className="text-2xl font-black text-sky-400 font-mono">
+                  {Tc} <span className="text-xs font-normal text-slate-400">K</span>
+                </div>
+                <p className="text-[10px] text-slate-400 mt-1 font-mono">
+                  {(Tc - 273.15).toFixed(0)}°C (Kalor Buang QC)
+                </p>
+              </div>
+
+            </div>
+
+            {/* PENJELASAN EDUKATIF KONSEPTUAL */}
+            <div className="bg-slate-900/60 p-5 rounded-2xl border border-slate-800 text-xs text-slate-300 leading-relaxed flex gap-3.5 items-start">
+              <Info size={20} className="text-amber-400 shrink-0 mt-0.5" />
+              <div>
+                <strong className="text-white block mb-1">Teorema Siklus Carnot &amp; Batas Hukum II Termodinamika:</strong>
+                <p>
+                  Nicolas Léonard Sadi Carnot (1824) membuktikan bahwa tidak ada mesin kalor nyata yang dapat memiliki efisiensi melebihi mesin Carnot reversibel yang bekerja di antara dua reservoir suhu yang sama. Efisiensi 100% secara termodinamika <strong>mustahil dicapai</strong> karena hal itu mensyaratkan suhu reservoir dingin mencapai nol mutlak (<MathFormula formula="T_C = 0\text{ K}" />), yang melanggar Hukum III Termodinamika. Energi terbuang (<MathFormula formula="Q_C" />) adalah konsekuensi alamiah dari peningkatan entropi semesta.
+                </p>
+              </div>
             </div>
 
           </div>
+
         </div>
+
       </div>
     </div>
   );
