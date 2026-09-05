@@ -117,23 +117,39 @@ export default function ListrikAcSim() {
         />
 
         {/* Oscilloscope Legend */}
-        <div className="absolute top-4 left-4 flex gap-4 text-xs font-bold">
-          <div className="flex items-center gap-1.5 bg-cyan-950/80 border border-cyan-800 px-3 py-1.5 rounded-lg text-cyan-300">
-            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400"></span> Gelombang Tegangan V(t)
+        <div className="absolute top-2 left-2 sm:top-4 sm:left-4 flex flex-col sm:flex-row gap-1 sm:gap-4 text-[10px] sm:text-xs font-bold z-10">
+          <div className="flex items-center gap-1.5 bg-cyan-950/80 backdrop-blur border border-cyan-800 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-cyan-300">
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-cyan-400"></span> V(t) Tegangan
           </div>
-          <div className="flex items-center gap-1.5 bg-amber-950/80 border border-amber-800 px-3 py-1.5 rounded-lg text-amber-300">
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span> Gelombang Arus I(t)
+          <div className="flex items-center gap-1.5 bg-amber-950/80 backdrop-blur border border-amber-800 px-2 py-1 sm:px-3 sm:py-1.5 rounded-md sm:rounded-lg text-amber-300">
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-amber-400"></span> I(t) Arus
           </div>
         </div>
 
-        {/* Telemetry Badge */}
-        <div className="absolute top-4 right-4 bg-slate-900/90 backdrop-blur border border-cyan-500/40 rounded-xl p-3 text-right text-xs">
+        {/* Telemetry Badge (Desktop) */}
+        <div className="hidden sm:block absolute top-4 right-4 bg-slate-900/90 backdrop-blur border border-cyan-500/40 rounded-xl p-3 text-right text-xs z-10">
           <div className="text-slate-400">Impedansi Rangkaian (Z):</div>
           <div className="font-mono text-lg text-cyan-400 font-extrabold">{impedance.toFixed(1)} Ω</div>
           <div className="text-slate-400 mt-1">Arus Puncak (I_maks):</div>
           <div className="font-mono text-amber-400 font-bold">{iMax.toFixed(2)} A</div>
           <div className="text-slate-400 mt-1">Beda Fase (φ):</div>
           <div className="font-mono text-purple-400 font-bold">{phaseAngleDeg.toFixed(1)}°</div>
+        </div>
+
+        {/* Mobile Telemetry Strip Below Canvas */}
+        <div className="sm:hidden grid grid-cols-3 gap-2 bg-slate-900/95 border-t border-slate-800 p-2 text-center text-[10px]">
+          <div>
+            <div className="text-slate-400">Impedansi Z:</div>
+            <div className="font-mono text-xs text-cyan-400 font-bold">{impedance.toFixed(1)} Ω</div>
+          </div>
+          <div>
+            <div className="text-slate-400">I_maks:</div>
+            <div className="font-mono text-xs text-amber-400 font-bold">{iMax.toFixed(2)} A</div>
+          </div>
+          <div>
+            <div className="text-slate-400">Beda Fase φ:</div>
+            <div className="font-mono text-xs text-purple-400 font-bold">{phaseAngleDeg.toFixed(1)}°</div>
+          </div>
         </div>
       </div>
 

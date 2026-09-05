@@ -408,19 +408,19 @@ export default function FaradaySimulation() {
           <div className="lg:col-span-3 space-y-6">
             
             {/* Visualisasi Beaker Elektrolisis */}
-            <div className="bg-slate-900/90 p-6 rounded-2xl border border-slate-800 shadow-2xl relative backdrop-blur">
+            <div className="bg-slate-900/90 p-4 sm:p-6 rounded-2xl border border-slate-800 shadow-2xl relative flex flex-col items-center backdrop-blur">
               
-              {/* Box Tampilan Tegangan & Arus Catu Daya di Tengah Atas */}
-              <div className="absolute top-5 left-1/2 -translate-x-1/2 bg-slate-950 border-2 border-slate-700 rounded-2xl px-6 py-2.5 flex gap-6 text-center shadow-xl z-10">
+              {/* Box Tampilan Tegangan & Arus Catu Daya di Tengah Atas (Mobile: Di atas kanvas, Desktop: Absolute overlay) */}
+              <div className="mb-3 sm:mb-0 sm:absolute sm:top-5 sm:left-1/2 sm:-translate-x-1/2 bg-slate-950 border border-slate-700 sm:border-2 rounded-xl sm:rounded-2xl px-4 py-2 sm:px-6 sm:py-2.5 flex gap-4 sm:gap-6 text-center shadow-xl z-10">
                 <div>
-                  <div className="text-[9px] uppercase font-bold text-slate-400 tracking-wider">AMPEREMETER DC</div>
-                  <div className="text-xl font-black font-mono text-amber-400">
+                  <div className="text-[8px] sm:text-[9px] uppercase font-bold text-slate-400 tracking-wider">AMPEREMETER DC</div>
+                  <div className="text-base sm:text-xl font-black font-mono text-amber-400">
                     {isElectrolyzing ? currentI.toFixed(2) : '0.00'} A
                   </div>
                 </div>
-                <div className="border-l border-slate-800 pl-6">
-                  <div className="text-[9px] uppercase font-bold text-slate-400 tracking-wider">STATUS CATU DAYA</div>
-                  <div className={`text-xs font-bold mt-1 ${isElectrolyzing ? 'text-emerald-400 animate-pulse' : 'text-slate-500'}`}>
+                <div className="border-l border-slate-800 pl-4 sm:pl-6">
+                  <div className="text-[8px] sm:text-[9px] uppercase font-bold text-slate-400 tracking-wider">STATUS CATU DAYA</div>
+                  <div className={`text-[11px] sm:text-xs font-bold mt-0.5 sm:mt-1 ${isElectrolyzing ? 'text-emerald-400 animate-pulse' : 'text-slate-500'}`}>
                     {isElectrolyzing ? '⚡ ARUS MENGALIR' : '○ STANDBY'}
                   </div>
                 </div>

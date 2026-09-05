@@ -160,8 +160,8 @@ export default function CerminLensaSim() {
           className="w-full h-auto block"
         />
 
-        {/* Telemetry Badge */}
-        <div className="absolute top-4 right-4 bg-slate-900/90 backdrop-blur border border-indigo-500/40 rounded-xl p-3 text-right text-xs">
+        {/* Telemetry Badge (Desktop) */}
+        <div className="hidden sm:block absolute top-4 right-4 bg-slate-900/90 backdrop-blur border border-indigo-500/40 rounded-xl p-3 text-right text-xs z-10">
           <div className="text-slate-400">Jarak Bayangan (s'):</div>
           <div className="font-mono text-lg text-cyan-400 font-extrabold">{imageDistanceText}</div>
           <div className="text-slate-400 mt-1">Perbesaran (M):</div>
@@ -169,6 +169,22 @@ export default function CerminLensaSim() {
           <div className="text-slate-400 mt-1">Sifat Bayangan:</div>
           <div className="font-bold text-emerald-400">
             {isRealImage ? 'Nyata, Terbalik' : 'Maya, Tegak'}
+          </div>
+        </div>
+
+        {/* Mobile Telemetry Strip Below Canvas */}
+        <div className="sm:hidden grid grid-cols-3 gap-2 bg-slate-900/95 border-t border-slate-800 p-2 text-center text-[10px]">
+          <div>
+            <div className="text-slate-400">s':</div>
+            <div className="font-mono text-xs text-cyan-400 font-bold">{imageDistanceText}</div>
+          </div>
+          <div>
+            <div className="text-slate-400">Perbesaran:</div>
+            <div className="font-mono text-xs text-amber-400 font-bold">{Math.abs(magnification).toFixed(2)}x</div>
+          </div>
+          <div>
+            <div className="text-slate-400">Sifat:</div>
+            <div className="text-[10px] font-bold text-emerald-400 truncate">{isRealImage ? 'Nyata' : 'Maya'}</div>
           </div>
         </div>
       </div>

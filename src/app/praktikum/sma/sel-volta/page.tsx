@@ -440,27 +440,27 @@ export default function SelVoltaSimulation() {
           <div className="lg:col-span-3 space-y-6">
             
             {/* Visualisasi Animasi Sel Daniell */}
-            <div className="bg-slate-900/90 p-6 rounded-2xl border border-slate-800 shadow-2xl relative backdrop-blur">
+            <div className="bg-slate-900/90 p-3 sm:p-6 rounded-2xl border border-slate-800 shadow-2xl relative flex flex-col items-center backdrop-blur">
               
-              {/* Voltmeter Digital Display di Tengah Kawat */}
-              <div className="absolute top-7 left-1/2 -translate-x-1/2 bg-slate-950 border-2 border-amber-500/80 rounded-2xl px-6 py-2.5 text-center shadow-[0_0_25px_rgba(245,158,11,0.25)] z-10">
-                <div className="text-[9px] font-bold uppercase tracking-widest text-slate-400 flex items-center justify-center gap-1.5">
-                  <Gauge size={12} className="text-amber-400" /> DIGITAL VOLTMETER
+              {/* Voltmeter Digital Display (Mobile: Di atas kanvas, Desktop: Overlay di kawat) */}
+              <div className="mb-3 sm:mb-0 sm:absolute sm:top-7 sm:left-1/2 sm:-translate-x-1/2 bg-slate-950/95 border sm:border-2 border-amber-500/80 rounded-xl sm:rounded-2xl px-4 py-2 sm:px-6 sm:py-2.5 text-center shadow-[0_0_20px_rgba(245,158,11,0.25)] z-10 backdrop-blur-md">
+                <div className="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-slate-400 flex items-center justify-center gap-1">
+                  <Gauge size={10} className="text-amber-400 sm:w-3 sm:h-3" /> DIGITAL VOLTMETER
                 </div>
-                <div className="text-3xl font-black font-mono text-amber-400 tracking-wider my-0.5">
-                  {measuredVoltage.toFixed(2)} <span className="text-base font-normal">V</span>
+                <div className="text-lg sm:text-3xl font-black font-mono text-amber-400 tracking-wider my-0.5">
+                  {measuredVoltage.toFixed(2)} <span className="text-xs sm:text-base font-normal">V</span>
                 </div>
-                <div className={`text-[9px] font-bold ${isSwitchClosed ? 'text-emerald-400' : 'text-rose-400'}`}>
-                  {isSwitchClosed ? '● SIRKUIT AKTIF' : '○ SIRKUIT TERPUTUS (0.00 V)'}
+                <div className={`text-[8px] sm:text-[9px] font-bold ${isSwitchClosed ? 'text-emerald-400' : 'text-rose-400'}`}>
+                  {isSwitchClosed ? '● AKTIF' : '○ OFF (0.00 V)'}
                 </div>
               </div>
 
-              <div className="w-full overflow-hidden rounded-xl border border-slate-800 bg-[#020617]">
+              <div className="w-full overflow-x-auto rounded-xl border border-slate-800 bg-[#020617]">
                 <canvas
                   ref={canvasRef}
                   width={700}
                   height={370}
-                  className="w-full h-auto block"
+                  className="w-full min-w-[500px] sm:min-w-full h-auto block"
                 />
               </div>
 

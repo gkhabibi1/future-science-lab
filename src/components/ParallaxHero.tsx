@@ -193,7 +193,7 @@ export default function ParallaxHero({ onExploreClick, totalSimulations }: Paral
 
       {/* ================= LAYER 2: Floating Science Particles & Constellation Dots (Depth 0.35) ================= */}
       <div 
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none hidden sm:block"
         style={getLayerStyle(0.35, 0.1)}
       >
         {/* Sparkle Nodes */}
@@ -215,7 +215,7 @@ export default function ParallaxHero({ onExploreClick, totalSimulations }: Paral
 
       {/* ================= LAYER 3: Interactive 3D Mid-ground Orbs & Badges (Depth 0.65) ================= */}
       <div 
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none hidden md:block"
         style={getLayerStyle(0.65, 0.25)}
       >
         {/* Glowing Brand Logo Badge Left */}
@@ -237,36 +237,36 @@ export default function ParallaxHero({ onExploreClick, totalSimulations }: Paral
 
       {/* ================= LAYER 4: Foreground Typography & Interactive Content (Depth 0.95) ================= */}
       <div 
-        className="relative z-20 text-center max-w-3xl mx-auto space-y-6"
+        className="relative z-20 text-center max-w-3xl mx-auto space-y-4 sm:space-y-6"
         style={getLayerStyle(0.95, -0.05)}
       >
         {/* Pill Tag with Logo */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/85 backdrop-blur-xl border border-cyan-500/40 text-cyan-300 text-xs font-bold shadow-[0_0_25px_rgba(6,182,212,0.3)] hover:border-cyan-400 transition-colors">
+        <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-slate-900/85 backdrop-blur-xl border border-cyan-500/40 text-cyan-300 text-[10px] sm:text-xs font-bold shadow-[0_0_20px_rgba(6,182,212,0.25)] hover:border-cyan-400 transition-colors max-w-full overflow-hidden">
           <Image
             src="https://ik.imagekit.io/e2yna5qg8/ChatGPT%20Image%20Sep%205,%202026,%2011_59_16%20AM_11zon.png"
             alt="LABSAINS Mini Logo"
-            width={18}
-            height={18}
-            className="object-contain drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]"
+            width={16}
+            height={16}
+            className="object-contain drop-shadow-[0_0_6px_rgba(34,211,238,0.8)] shrink-0"
           />
-          <span className="tracking-wider uppercase font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-teal-200">
-            LABSAINS VIRTUAL 2.0 • INTERACTIVE ENGINE
+          <span className="tracking-wider uppercase font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-teal-200 truncate">
+            LABSAINS VIRTUAL 2.0
           </span>
-          <span className="px-1.5 py-0.2 rounded bg-cyan-500/20 text-[10px] text-cyan-200 border border-cyan-400/30 font-mono">
+          <span className="px-1.5 py-0.2 rounded bg-cyan-500/20 text-[9px] sm:text-[10px] text-cyan-200 border border-cyan-400/30 font-mono shrink-0">
             {totalSimulations} LABS
           </span>
         </div>
 
         {/* Hero Title with 3D Depth Lighting */}
         <div className="space-y-2">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-tight">
             Laboratorium Virtual <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-amber-300 drop-shadow-[0_10px_25px_rgba(6,182,212,0.4)]">
               Sains & Komputasi AI
             </span>
           </h1>
-          <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-normal">
-            Eksplorasi fenomena fisika, mekanika fluida, kesetimbangan kimiawi, dan genetika molekuler melalui simulasi interaktif matematis real-time berstandar kurikulum nasional.
+          <p className="text-slate-300 text-xs sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-normal px-2">
+            Eksplorasi fenomena fisika, mekanika fluida, kesetimbangan kimiawi, dan genetika molekuler melalui simulasi interaktif matematis real-time.
           </p>
         </div>
 
@@ -274,9 +274,9 @@ export default function ParallaxHero({ onExploreClick, totalSimulations }: Paral
         <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
           <button
             onClick={onExploreClick}
-            className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-bold text-sm shadow-[0_10px_25px_-5px_rgba(6,182,212,0.5)] flex items-center gap-2 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            className="w-full sm:w-auto px-6 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-bold text-xs sm:text-sm shadow-[0_10px_25px_-5px_rgba(6,182,212,0.5)] flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
           >
-            <Compass size={18} /> Mulai Eksplorasi Praktikum
+            <Compass size={16} /> Mulai Eksplorasi Praktikum
           </button>
           
           <div className="hidden sm:flex items-center gap-2 px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300 font-mono backdrop-blur-md">

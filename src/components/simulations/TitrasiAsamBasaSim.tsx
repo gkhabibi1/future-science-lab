@@ -204,28 +204,28 @@ export default function TitrasiAsamBasaSim() {
         />
 
         {/* Action Controls */}
-        <div className="absolute top-4 left-4 flex gap-2">
+        <div className="absolute top-2 left-2 sm:top-4 sm:left-4 flex gap-1.5 sm:gap-2 z-10">
           <button
             onClick={() => setIsTitrating(!isTitrating)}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-white text-xs font-bold shadow-lg transition ${
+            className={`flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl text-white text-[11px] sm:text-xs font-bold shadow-lg transition ${
               isTitrating ? 'bg-amber-600 hover:bg-amber-500' : 'bg-pink-600 hover:bg-pink-500'
             }`}
           >
-            <Droplet size={14} /> {isTitrating ? 'Hentikan Tetesan' : 'Mulai Teteskan NaOH'}
+            <Droplet size={13} /> {isTitrating ? 'Hentikan' : 'Mulai Teteskan'}
           </button>
           <button
             onClick={handleReset}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 transition"
+            className="flex items-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg sm:rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-300 text-[11px] sm:text-xs font-semibold border border-slate-700 backdrop-blur transition"
           >
-            <RotateCcw size={14} /> Reset Titrasi
+            <RotateCcw size={13} /> Reset
           </button>
         </div>
 
         {/* Live Telemetry Badge */}
-        <div className="absolute bottom-4 right-4 bg-slate-900/90 backdrop-blur border border-pink-500/40 rounded-xl p-3 text-right text-xs">
-          <div className="text-slate-400">Volume Titran Added (<MathFormula formula="V_B" />):</div>
-          <div className="font-mono text-lg text-pink-400 font-extrabold">{titranVolume.toFixed(1)} mL</div>
-          <div className="text-slate-400 mt-1">Nilai pH Larutan:</div>
+        <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-slate-900/90 backdrop-blur border border-pink-500/40 rounded-lg sm:rounded-xl p-2 sm:p-3 text-right text-[10px] sm:text-xs z-10">
+          <div className="text-slate-400">Titran (<MathFormula formula="V_B" />):</div>
+          <div className="font-mono text-base sm:text-lg text-pink-400 font-extrabold">{titranVolume.toFixed(1)} mL</div>
+          <div className="text-slate-400 mt-0.5 sm:mt-1">pH Larutan:</div>
           <div className="font-mono text-cyan-400 font-bold">{currentPH.toFixed(2)}</div>
         </div>
       </div>

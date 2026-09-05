@@ -199,30 +199,46 @@ export default function GerakParabolaSim() {
         />
 
         {/* Controls Overlay */}
-        <div className="absolute top-4 left-4 flex gap-2">
+        <div className="absolute top-2 left-2 sm:top-4 sm:left-4 flex gap-1.5 sm:gap-2 z-10">
           <button
             onClick={handleFire}
             disabled={isFiring}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 disabled:opacity-50 text-white text-xs font-bold shadow-lg transition"
+            className="flex items-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl bg-purple-600 hover:bg-purple-500 disabled:opacity-50 text-white text-[11px] sm:text-xs font-bold shadow-lg transition"
           >
-            <Play size={14} /> Tembak Peluru
+            <Play size={13} /> Tembak Peluru
           </button>
           <button
             onClick={handleReset}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 transition"
+            className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg sm:rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-300 text-[11px] sm:text-xs font-semibold border border-slate-700 backdrop-blur transition"
           >
-            <RotateCcw size={14} /> Reset
+            <RotateCcw size={13} /> Reset
           </button>
         </div>
 
-        {/* Telemetry Badge */}
-        <div className="absolute top-4 right-4 bg-slate-900/90 backdrop-blur border border-purple-500/40 rounded-xl p-3 text-right text-xs">
+        {/* Telemetry Badge (Desktop: Floating, Mobile: Hidden here and shown in bar below) */}
+        <div className="hidden sm:block absolute top-4 right-4 bg-slate-900/90 backdrop-blur border border-purple-500/40 rounded-xl p-3 text-right text-xs z-10">
           <div className="text-slate-400">Jarak Maks (<MathFormula formula="R" />):</div>
           <div className="font-mono text-lg text-purple-400 font-extrabold">{maxRange.toFixed(1)} m</div>
           <div className="text-slate-400 mt-1">Tinggi Maks (<MathFormula formula="H_{\text{max}}" />):</div>
           <div className="font-mono text-cyan-400 font-bold">{maxH.toFixed(1)} m</div>
           <div className="text-slate-400 mt-1">Waktu Udara (<MathFormula formula="t_{\text{total}}" />):</div>
           <div className="font-mono text-amber-400 font-bold">{flightTime.toFixed(2)} s</div>
+        </div>
+
+        {/* Mobile Telemetry Strip Below Canvas */}
+        <div className="sm:hidden grid grid-cols-3 gap-2 bg-slate-900/95 border-t border-slate-800 p-2.5 text-center text-[10px]">
+          <div>
+            <div className="text-slate-400">R Maks:</div>
+            <div className="font-mono text-xs text-purple-400 font-bold">{maxRange.toFixed(1)} m</div>
+          </div>
+          <div>
+            <div className="text-slate-400">H Maks:</div>
+            <div className="font-mono text-xs text-cyan-400 font-bold">{maxH.toFixed(1)} m</div>
+          </div>
+          <div>
+            <div className="text-slate-400">t Total:</div>
+            <div className="font-mono text-xs text-amber-400 font-bold">{flightTime.toFixed(2)} s</div>
+          </div>
         </div>
       </div>
 

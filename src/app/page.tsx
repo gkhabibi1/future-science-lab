@@ -124,32 +124,32 @@ export default function Home() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         {/* Header Navbar */}
-        <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-8 border-b border-slate-800/80">
-          <div className="flex items-center gap-4">
-            <div className="relative p-2 rounded-2xl bg-gradient-to-tr from-cyan-950/70 via-slate-900/90 to-blue-950/70 border border-cyan-500/40 shadow-[0_0_30px_rgba(6,182,212,0.3)] flex items-center justify-center group overflow-hidden">
-              <div className="absolute inset-0 bg-cyan-400/15 rounded-2xl blur-md group-hover:bg-cyan-400/25 transition-all"></div>
+        <header className="flex items-center justify-between gap-3 pb-6 border-b border-slate-800/80">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="relative p-1.5 sm:p-2 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-cyan-950/70 via-slate-900/90 to-blue-950/70 border border-cyan-500/40 shadow-[0_0_20px_rgba(6,182,212,0.25)] flex items-center justify-center shrink-0 overflow-hidden">
+              <div className="absolute inset-0 bg-cyan-400/15 rounded-xl sm:rounded-2xl blur-md"></div>
               <Image 
                 src="https://ik.imagekit.io/e2yna5qg8/ChatGPT%20Image%20Sep%205,%202026,%2011_59_16%20AM_11zon.png"
                 alt="LABSAINS Logo"
-                width={48}
-                height={48}
-                className="relative z-10 object-contain drop-shadow-[0_0_14px_rgba(34,211,238,0.7)] brightness-110 contrast-125 hover:scale-105 transition-transform"
+                width={40}
+                height={40}
+                className="relative z-10 object-contain w-9 h-9 sm:w-12 sm:h-12 drop-shadow-[0_0_12px_rgba(34,211,238,0.7)] brightness-110 contrast-125"
                 priority
               />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-amber-300 drop-shadow-[0_0_10px_rgba(6,182,212,0.4)]">
+                <span className="text-[11px] sm:text-xs font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-amber-300 drop-shadow-[0_0_8px_rgba(6,182,212,0.4)]">
                   LABSAINS
                 </span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 shadow-sm">
+                <span className="px-2 py-0.2 rounded-full text-[9px] sm:text-[10px] font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
                   Virtual Lab v2.0
                 </span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white flex items-center gap-2">
+              <h1 className="text-lg sm:text-2xl md:text-3xl font-black tracking-tight text-white leading-tight">
                 Simulasi Praktikum Sains Virtual
               </h1>
-              <p className="text-xs font-semibold text-slate-400 mt-0.5 flex items-center gap-1.5">
+              <p className="text-[11px] sm:text-xs font-semibold text-slate-400 flex items-center gap-1.5">
                 <span>By</span>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-300 font-bold">
                   Gilang &amp; Yashinta

@@ -551,28 +551,29 @@ export default function VSEPRSimulation() {
           <div className="lg:col-span-3 space-y-6">
             
             {/* Ruang Canvas 3D Interaktif */}
-            <div className="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 shadow-2xl relative overflow-hidden flex justify-center backdrop-blur">
+            <div className="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 shadow-2xl relative flex flex-col items-center backdrop-blur">
               
-              {/* Badge Informasi di Pojok Kiri Atas */}
-              <div className="absolute top-4 left-4 z-10 flex flex-col gap-1 bg-slate-950/85 p-3 rounded-xl border border-slate-800 backdrop-blur">
-                <div className="text-base sm:text-lg font-black text-white flex items-center gap-2">
-                  <Atom size={18} className="text-teal-400" /> {currentMolecule.formula} — {currentMolecule.name}
-                </div>
-                <div className="text-xs font-mono text-teal-300">
-                  Bentuk: <strong>{currentMolecule.geometryName}</strong>
-                </div>
-              </div>
-
-              {/* Legenda Atom di Kanan Atas */}
-              <div className="absolute top-4 right-4 z-10 bg-slate-950/85 p-2.5 rounded-xl border border-slate-800 text-[11px] space-y-1 backdrop-blur">
-                <div className="flex items-center gap-2 text-slate-300">
-                  <span className="w-2.5 h-2.5 rounded-full bg-slate-400 inline-block" /> Atom Ikatan
-                </div>
-                {currentMolecule.peb > 0 && showLonePairs && (
-                  <div className="flex items-center gap-2 text-amber-400">
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block" /> Awan PEB (Lone Pair)
+              {/* Header Info & Legenda */}
+              <div className="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-3">
+                <div className="flex flex-col gap-0.5 bg-slate-950/85 p-2.5 sm:p-3 rounded-xl border border-slate-800 backdrop-blur w-full sm:w-auto">
+                  <div className="text-sm sm:text-lg font-black text-white flex items-center gap-2">
+                    <Atom size={16} className="text-teal-400" /> {currentMolecule.formula} — {currentMolecule.name}
                   </div>
-                )}
+                  <div className="text-[11px] sm:text-xs font-mono text-teal-300">
+                    Bentuk: <strong>{currentMolecule.geometryName}</strong>
+                  </div>
+                </div>
+
+                <div className="bg-slate-950/85 p-2 sm:p-2.5 rounded-xl border border-slate-800 text-[10px] sm:text-[11px] flex sm:flex-col gap-3 sm:gap-1 backdrop-blur w-full sm:w-auto justify-start">
+                  <div className="flex items-center gap-1.5 text-slate-300">
+                    <span className="w-2 h-2 rounded-full bg-slate-400 inline-block" /> Atom Ikatan
+                  </div>
+                  {currentMolecule.peb > 0 && showLonePairs && (
+                    <div className="flex items-center gap-1.5 text-amber-400">
+                      <span className="w-2 h-2 rounded-full bg-amber-400 inline-block" /> Awan PEB
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div className="w-full overflow-hidden rounded-xl border border-slate-800 bg-[#020617]">

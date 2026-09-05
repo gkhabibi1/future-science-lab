@@ -124,11 +124,11 @@ export default function HukumNewtonSim() {
         />
 
         {/* Telemetry Badge */}
-        <div className="absolute top-4 right-4 bg-slate-900/90 backdrop-blur border border-blue-500/40 rounded-xl p-3 text-right text-xs">
-          <div className="text-slate-400">Percepatan Benda (a):</div>
-          <div className="font-mono text-xl text-cyan-400 font-extrabold">{acceleration.toFixed(2)} m/s²</div>
-          <div className="text-slate-400 mt-1">Gaya Bersih (ΣF):</div>
-          <div className="font-mono text-amber-400 font-bold">{netForce.toFixed(1)} N</div>
+        <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-slate-900/90 backdrop-blur border border-blue-500/40 rounded-lg sm:rounded-xl p-2 sm:p-3 text-right text-[10px] sm:text-xs z-10">
+          <div className="text-slate-400">Percepatan (a):</div>
+          <div className="font-mono text-base sm:text-xl text-cyan-400 font-extrabold">{acceleration.toFixed(2)} m/s²</div>
+          <div className="text-slate-400 mt-0.5 sm:mt-1">Gaya Bersih (ΣF):</div>
+          <div className="font-mono text-xs sm:text-base text-amber-400 font-bold">{netForce.toFixed(1)} N</div>
         </div>
       </div>
 

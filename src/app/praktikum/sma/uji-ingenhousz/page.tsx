@@ -602,18 +602,18 @@ export default function IngenhouszSimulation() {
             <div className="bg-[#070d18] p-6 rounded-2xl border border-slate-800 shadow-2xl relative flex flex-col items-center justify-center overflow-hidden">
               
               {/* Badge Kecepatan Gelembung Real-Time (Digital Bubble Counter) */}
-              <div className="absolute top-4 right-5 bg-slate-900/90 backdrop-blur-md px-4 py-2.5 rounded-xl border border-slate-700 flex items-center gap-3 z-10 shadow-lg">
+              <div className="absolute top-3 right-3 sm:top-4 sm:right-5 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2.5 rounded-xl border border-slate-700 flex items-center gap-2 sm:gap-3 z-10 shadow-lg">
                 <div className="text-right">
-                  <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Laju Produksi O₂</span>
-                  <span className="text-xl font-black font-mono text-emerald-400 flex items-center justify-end gap-1">
-                    {bubbleRateBPM} <span className="text-xs font-medium text-slate-300">gelembung/menit</span>
+                  <span className="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Laju O₂</span>
+                  <span className="text-base sm:text-xl font-black font-mono text-emerald-400 flex items-center justify-end gap-1">
+                    {bubbleRateBPM} <span className="text-[10px] sm:text-xs font-medium text-slate-300">BPM</span>
                   </span>
                 </div>
-                <div className="relative flex h-3 w-3">
+                <div className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3">
                   {bubbleRateBPM > 0 && isRunning && (
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   )}
-                  <span className={`relative inline-flex rounded-full h-3 w-3 ${bubbleRateBPM > 0 ? 'bg-emerald-500' : 'bg-slate-600'}`}></span>
+                  <span className={`relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 ${bubbleRateBPM > 0 ? 'bg-emerald-500' : 'bg-slate-600'}`}></span>
                 </div>
               </div>
 

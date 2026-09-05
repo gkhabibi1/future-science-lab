@@ -410,7 +410,7 @@ export default function TitrasiAsamBasaSimulation() {
           <div className="lg:col-span-3 space-y-6">
             
             {/* Visualisasi Buret & Erlenmeyer */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 bg-slate-900/90 p-6 rounded-2xl border border-slate-800 shadow-2xl backdrop-blur">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 bg-slate-900/90 p-4 sm:p-6 rounded-2xl border border-slate-800 shadow-2xl backdrop-blur">
               
               {/* Kolom Visual Alat Laboratorium (Buret + Labu) */}
               <div className="md:col-span-4 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-slate-800 pb-6 md:pb-0 md:pr-6">

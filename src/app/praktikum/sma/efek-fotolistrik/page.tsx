@@ -240,13 +240,13 @@ export default function FotolistrikSimulation() {
           {/* AREA KANVAS & ANALISIS (KANAN) */}
           <div className="lg:col-span-3 space-y-6">
             
-            <div className="bg-[#0f172a] p-4 rounded-2xl shadow-xl border-2 border-slate-700 relative overflow-hidden h-[300px]">
-               <div className="absolute top-4 right-6 flex flex-col gap-2 text-xs font-bold bg-slate-800/80 p-2.5 rounded-lg border border-slate-600 z-10">
+            <div className="bg-[#0f172a] p-2 sm:p-4 rounded-2xl shadow-xl border-2 border-slate-700 relative overflow-hidden">
+               <div className="absolute top-2 right-2 sm:top-4 sm:right-6 flex flex-col gap-1 sm:gap-2 text-[10px] sm:text-xs font-bold bg-slate-800/85 backdrop-blur p-2 sm:p-2.5 rounded-lg border border-slate-600 z-10">
                   <div className="text-yellow-400 flex items-center gap-1.5">⚡ Foton (Energi Cahaya)</div>
                   <div className="text-sky-400 flex items-center gap-1.5">⊖ Elektron (Terlepas)</div>
                </div>
                
-               <canvas ref={canvasRef} width={800} height={300} className="w-full h-full bg-[#0f172a] block" />
+               <canvas ref={canvasRef} width={800} height={320} className="w-full h-auto bg-[#0f172a] block rounded-xl" />
             </div>
 
             {/* Panel Kalkulasi Kuantum */}

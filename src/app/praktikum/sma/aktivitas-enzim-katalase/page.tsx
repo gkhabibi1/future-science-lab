@@ -410,27 +410,29 @@ export default function EnzimKatalaseSimulation() {
           <div className="lg:col-span-3 space-y-6">
             
             {/* Ruang Canvas Tabung Reaksi */}
-            <div className="bg-slate-900/90 p-6 rounded-2xl border border-slate-800 shadow-2xl relative flex flex-col items-center justify-center backdrop-blur">
+            <div className="bg-slate-900/90 p-4 sm:p-6 rounded-2xl border border-slate-800 shadow-2xl relative flex flex-col items-center justify-center backdrop-blur">
               
-              {/* Box Indikator Status di Atas */}
-              <div className="absolute top-4 left-6 flex items-center gap-3 bg-slate-950/85 px-4 py-2 rounded-xl border border-slate-800 backdrop-blur z-10">
-                <div className="text-xs">
-                  <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Kondisi Protein Enzim</span>
-                  <span className={`font-bold ${enzymeActivity > 60 ? 'text-emerald-400' : enzymeActivity > 20 ? 'text-amber-400' : 'text-rose-400'}`}>
-                    {enzymeStatus}
-                  </span>
-                </div>
-              </div>
-
-              {isTestSplint && (
-                <div className="absolute top-4 right-6 bg-slate-950/85 px-4 py-2 rounded-xl border border-amber-500/50 flex items-center gap-2 backdrop-blur z-10">
-                  <Flame size={16} className="text-amber-400 animate-bounce" />
+              {/* Box Indikator Status di Atas Kanvas */}
+              <div className="w-full max-w-[500px] flex flex-wrap items-center justify-between gap-2 mb-3">
+                <div className="flex items-center gap-2 bg-slate-950/85 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-slate-800 backdrop-blur">
                   <div className="text-xs">
-                    <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Hasil Bara Api</span>
-                    <span className="font-bold text-amber-300">{flameStatus}</span>
+                    <span className="text-slate-400 block text-[9px] sm:text-[10px] uppercase font-bold tracking-wider">Kondisi Protein Enzim</span>
+                    <span className={`font-bold text-xs sm:text-sm ${enzymeActivity > 60 ? 'text-emerald-400' : enzymeActivity > 20 ? 'text-amber-400' : 'text-rose-400'}`}>
+                      {enzymeStatus}
+                    </span>
                   </div>
                 </div>
-              )}
+
+                {isTestSplint && (
+                  <div className="bg-slate-950/85 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-amber-500/50 flex items-center gap-2 backdrop-blur">
+                    <Flame size={15} className="text-amber-400 animate-bounce" />
+                    <div className="text-xs">
+                      <span className="text-slate-400 block text-[9px] sm:text-[10px] uppercase font-bold tracking-wider">Hasil Bara Api</span>
+                      <span className="font-bold text-xs sm:text-sm text-amber-300">{flameStatus}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
 
               <div className="w-full max-w-[500px] overflow-hidden rounded-xl border border-slate-800 bg-[#020617]">
                 <canvas

@@ -193,9 +193,9 @@ export default function RLCReactSimulation() {
           {/* Area Visualisasi Canvas Osiloskop */}
           <div className="lg:col-span-2">
             <div className="bg-slate-950 p-4 rounded-3xl shadow-2xl border border-slate-800 relative">
-              <div className="absolute top-6 right-6 flex gap-4 text-xs font-bold bg-slate-900/90 border border-slate-800 p-2.5 rounded-xl backdrop-blur z-10">
-                <span className="flex items-center gap-1.5 text-cyan-400"><span className="w-2.5 h-2.5 bg-cyan-400 rounded-full inline-block"></span> Tegangan (V)</span>
-                <span className="flex items-center gap-1.5 text-rose-400"><span className="w-2.5 h-2.5 bg-rose-400 rounded-full inline-block"></span> Arus (I)</span>
+              <div className="absolute top-3 right-3 sm:top-6 sm:right-6 flex gap-2 sm:gap-4 text-[10px] sm:text-xs font-bold bg-slate-900/90 border border-slate-800 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl backdrop-blur z-10">
+                <span className="flex items-center gap-1.5 text-cyan-400"><span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-cyan-400 rounded-full inline-block"></span> Tegangan (V)</span>
+                <span className="flex items-center gap-1.5 text-rose-400"><span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-rose-400 rounded-full inline-block"></span> Arus (I)</span>
               </div>
               
               <canvas 
