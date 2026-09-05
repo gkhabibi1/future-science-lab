@@ -171,7 +171,7 @@ export default function ParallaxHero({ onExploreClick, totalSimulations }: Paral
         {/* Glowing Brand Logo Badge Left */}
         <div className="absolute top-1/2 -translate-y-24 left-6 md:left-20 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-tr from-cyan-950/60 via-slate-900/80 to-blue-950/60 border border-cyan-400/40 backdrop-blur-xl flex items-center justify-center shadow-[0_0_35px_rgba(6,182,212,0.4)] group">
           <Image
-            src="https://ik.imagekit.io/e2yna5qg8/ChatGPT_Image_Sep_5__2026__11_56_23_AM-removebg-preview.png"
+            src="https://ik.imagekit.io/e2yna5qg8/ChatGPT%20Image%20Sep%205,%202026,%2011_59_16%20AM_11zon.png"
             alt="LABSAINS Emblem"
             width={52}
             height={52}
@@ -193,7 +193,7 @@ export default function ParallaxHero({ onExploreClick, totalSimulations }: Paral
         {/* Pill Tag with Logo */}
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/85 backdrop-blur-xl border border-cyan-500/40 text-cyan-300 text-xs font-bold shadow-[0_0_25px_rgba(6,182,212,0.3)] hover:border-cyan-400 transition-colors">
           <Image
-            src="https://ik.imagekit.io/e2yna5qg8/ChatGPT_Image_Sep_5__2026__11_56_23_AM-removebg-preview.png"
+            src="https://ik.imagekit.io/e2yna5qg8/ChatGPT%20Image%20Sep%205,%202026,%2011_59_16%20AM_11zon.png"
             alt="LABSAINS Mini Logo"
             width={18}
             height={18}

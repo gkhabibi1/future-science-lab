@@ -126,29 +126,32 @@ export default function Home() {
         {/* Header Navbar */}
         <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-8 border-b border-slate-800/80">
           <div className="flex items-center gap-4">
-            <div className="relative p-2 rounded-2xl bg-gradient-to-tr from-cyan-950/60 via-slate-900/80 to-blue-950/60 border border-cyan-500/30 shadow-[0_0_25px_rgba(6,182,212,0.25)] flex items-center justify-center group overflow-hidden">
-              <div className="absolute inset-0 bg-cyan-400/10 rounded-2xl blur-md group-hover:bg-cyan-400/20 transition-all"></div>
+            <div className="relative p-2 rounded-2xl bg-gradient-to-tr from-cyan-950/70 via-slate-900/90 to-blue-950/70 border border-cyan-500/40 shadow-[0_0_30px_rgba(6,182,212,0.3)] flex items-center justify-center group overflow-hidden">
+              <div className="absolute inset-0 bg-cyan-400/15 rounded-2xl blur-md group-hover:bg-cyan-400/25 transition-all"></div>
               <Image 
-                src="https://ik.imagekit.io/e2yna5qg8/ChatGPT_Image_Sep_5__2026__11_56_23_AM-removebg-preview.png"
+                src="https://ik.imagekit.io/e2yna5qg8/ChatGPT%20Image%20Sep%205,%202026,%2011_59_16%20AM_11zon.png"
                 alt="LABSAINS Logo"
-                width={46}
-                height={46}
-                className="relative z-10 object-contain drop-shadow-[0_0_12px_rgba(34,211,238,0.6)] brightness-110 contrast-125 hover:scale-105 transition-transform"
+                width={48}
+                height={48}
+                className="relative z-10 object-contain drop-shadow-[0_0_14px_rgba(34,211,238,0.7)] brightness-110 contrast-125 hover:scale-105 transition-transform"
                 priority
               />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-300 drop-shadow-[0_0_8px_rgba(6,182,212,0.3)]">
+                <span className="text-xs font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-amber-300 drop-shadow-[0_0_10px_rgba(6,182,212,0.4)]">
                   LABSAINS
                 </span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800/90 text-slate-300 border border-slate-700 shadow-sm">
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 shadow-sm">
                   Virtual Lab v2.0
                 </span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
-                Simulasi Praktikum Science
+              <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white flex items-center gap-2">
+                Simulasi Praktikum Sains Virtual
               </h1>
+              <p className="text-xs text-slate-400 font-medium">
+                Laboratorium Eksperimen Digital Interaktif • Fisika, Kimia & Biologi
+              </p>
             </div>
           </div>
         </header>
@@ -377,7 +380,7 @@ export default function Home() {
         <footer className="mt-20 pt-8 border-t border-slate-800/80 flex flex-col items-center justify-center gap-3 text-xs text-slate-500">
           <div className="flex items-center gap-2">
             <Image
-              src="https://ik.imagekit.io/e2yna5qg8/ChatGPT_Image_Sep_5__2026__11_56_23_AM-removebg-preview.png"
+              src="https://ik.imagekit.io/e2yna5qg8/ChatGPT%20Image%20Sep%205,%202026,%2011_59_16%20AM_11zon.png"
               alt="LABSAINS Logo"
               width={26}
               height={26}
