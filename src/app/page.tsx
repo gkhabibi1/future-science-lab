@@ -23,7 +23,6 @@ import {
   Sparkles,
   GraduationCap,
   FlaskConical,
-  Database,
   Play,
   ArrowRight,
   Filter,
@@ -140,13 +139,6 @@ export default function Home() {
               <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
                 Simulasi Praktikum Science
               </h1>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-400">
-              <Database size={14} className="text-emerald-400" />
-              <span>Supabase Connected</span>
             </div>
           </div>
         </header>
