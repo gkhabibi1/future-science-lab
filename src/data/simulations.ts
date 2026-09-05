@@ -12,6 +12,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'CloudRain',
     badgeColor: 'from-blue-500 to-cyan-400',
     formula: 'E = k \\cdot I_{\\text{sun}} \\cdot (1 + v_{\\text{wind}})',
+    path: '/praktikum/sd/siklus-air',
     tags: ['SD', 'Biologi', 'Awan', 'Hujan', 'Air', 'Lingkungan']
   },
   {
@@ -24,6 +25,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'Magnet',
     badgeColor: 'from-red-500 to-rose-400',
     formula: 'F = \\frac{\\mu_0}{4\\pi} \\cdot \\frac{q_{m1} q_{m2}}{r^2}',
+    path: '/praktikum/sd/magnet-sederhana',
     tags: ['SD', 'Fisika', 'Magnet', 'Gaya Tarik', 'Kutub Magnet']
   },
   {
@@ -36,6 +38,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'Waves',
     badgeColor: 'from-teal-500 to-emerald-400',
     formula: 'F_a = \\rho_{\\text{cairan}} \\cdot g \\cdot V_{\\text{tercelup}}',
+    path: '/praktikum/sd/mengapung-tenggelam',
     tags: ['SD', 'Fisika', 'Massa Jenis', 'Archimedes', 'Air', 'Fluida']
   },
 
@@ -89,6 +92,7 @@ export const SIMULATION_LIST: SimulationItem[] = [
     iconName: 'Leaf',
     badgeColor: 'from-emerald-500 to-green-600',
     formula: '6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\xrightarrow{\\text{cahaya}} \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2',
+    path: '/praktikum/smp/fotosintesis',
     tags: ['SMP', 'Biologi', 'Fotosintesis', 'Tumbuhan', 'Oksigen', 'Klorofil']
   },
 

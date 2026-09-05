@@ -32,8 +32,9 @@ export default function ParallaxHero({ onExploreClick, totalSimulations }: Paral
   const currentPos = useRef({ x: 0, y: 0 });
   const rafRef = useRef<number | null>(null);
 
-  // Mouse move and Device Orientation handler
+  // Mouse move on Desktop & Touch/Tap on Mobile
   useEffect(() => {
+    // Desktop Mouse Handlers
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
@@ -46,26 +47,39 @@ export default function ParallaxHero({ onExploreClick, totalSimulations }: Paral
       };
     };
 
-    const handleDeviceOrientation = (e: DeviceOrientationEvent) => {
-      if (e.gamma !== null && e.beta !== null) {
-        // gamma: left-to-right tilt [-90, 90]
-        // beta: front-to-back tilt [-180, 180]
-        const x = Math.max(-1, Math.min(1, e.gamma / 30));
-        const y = Math.max(-1, Math.min(1, (e.beta - 45) / 30));
-        targetPos.current = { x, y };
-      }
+    const handleMouseLeave = () => {
+      targetPos.current = { x: 0, y: 0 };
     };
 
-    const handleMouseLeave = () => {
+    // Mobile Touch / Tap Handlers (Replaces Gyroscope / Device Orientation)
+    const handleTouch = (e: TouchEvent) => {
+      if (!containerRef.current || e.touches.length === 0) return;
+      const touch = e.touches[0];
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = ((touch.clientX - rect.left) / rect.width - 0.5) * 2;
+      const y = ((touch.clientY - rect.top) / rect.height - 0.5) * 2;
+      targetPos.current = { 
+        x: Math.max(-1, Math.min(1, x)), 
+        y: Math.max(-1, Math.min(1, y)) 
+      };
+    };
+
+    const handleTouchEnd = () => {
+      // Smoothly return to center when finger is lifted
       targetPos.current = { x: 0, y: 0 };
     };
 
     const container = containerRef.current;
     if (container) {
+      // Desktop listeners
       container.addEventListener('mousemove', handleMouseMove);
       container.addEventListener('mouseleave', handleMouseLeave);
+      // Mobile tap/touch listeners
+      container.addEventListener('touchstart', handleTouch, { passive: true });
+      container.addEventListener('touchmove', handleTouch, { passive: true });
+      container.addEventListener('touchend', handleTouchEnd, { passive: true });
+      container.addEventListener('touchcancel', handleTouchEnd, { passive: true });
     }
-    window.addEventListener('deviceorientation', handleDeviceOrientation);
 
     // Smooth Lerp loop (like wagerfield/parallax friction: 0.1)
     const animate = () => {
@@ -87,8 +101,11 @@ export default function ParallaxHero({ onExploreClick, totalSimulations }: Paral
       if (container) {
         container.removeEventListener('mousemove', handleMouseMove);
         container.removeEventListener('mouseleave', handleMouseLeave);
+        container.removeEventListener('touchstart', handleTouch);
+        container.removeEventListener('touchmove', handleTouch);
+        container.removeEventListener('touchend', handleTouchEnd);
+        container.removeEventListener('touchcancel', handleTouchEnd);
       }
-      window.removeEventListener('deviceorientation', handleDeviceOrientation);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
