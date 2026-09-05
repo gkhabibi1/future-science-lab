@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useTransition } from 'react';
+import Image from 'next/image';
 import { 
   Sparkles, 
   Atom, 
@@ -167,9 +168,15 @@ export default function ParallaxHero({ onExploreClick, totalSimulations }: Paral
         className="absolute inset-0 pointer-events-none"
         style={getLayerStyle(0.65, 0.25)}
       >
-        {/* Glowing Atom Badge Left */}
-        <div className="absolute top-1/2 -translate-y-24 left-6 md:left-20 w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-tr from-cyan-600/40 via-cyan-500/20 to-blue-500/10 border border-cyan-400/40 backdrop-blur-xl flex items-center justify-center shadow-[0_0_30px_rgba(6,182,212,0.35)]">
-          <Atom className="w-7 h-7 md:w-8 md:h-8 text-cyan-300 animate-[spin_20s_linear_infinite]" />
+        {/* Glowing Brand Logo Badge Left */}
+        <div className="absolute top-1/2 -translate-y-24 left-6 md:left-20 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-tr from-cyan-950/60 via-slate-900/80 to-blue-950/60 border border-cyan-400/40 backdrop-blur-xl flex items-center justify-center shadow-[0_0_35px_rgba(6,182,212,0.4)] group">
+          <Image
+            src="https://ik.imagekit.io/e2yna5qg8/ChatGPT_Image_Sep_5__2026__11_56_23_AM-removebg-preview.png"
+            alt="LABSAINS Emblem"
+            width={52}
+            height={52}
+            className="object-contain drop-shadow-[0_0_14px_rgba(34,211,238,0.7)] group-hover:scale-110 transition-transform"
+          />
         </div>
 
         {/* Floating Microscope Right */}
@@ -183,10 +190,18 @@ export default function ParallaxHero({ onExploreClick, totalSimulations }: Paral
         className="relative z-20 text-center max-w-3xl mx-auto space-y-6"
         style={getLayerStyle(0.95, -0.05)}
       >
-        {/* Pill Tag */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-xl border border-cyan-500/30 text-cyan-300 text-xs font-bold shadow-[0_0_20px_rgba(6,182,212,0.25)] hover:border-cyan-400 transition-colors">
-          <Sparkles size={14} className="text-amber-400 animate-pulse" />
-          <span className="tracking-wider uppercase">LABSAINS VIRTUAL 2.0 • INTERACTIVE ENGINE</span>
+        {/* Pill Tag with Logo */}
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/85 backdrop-blur-xl border border-cyan-500/40 text-cyan-300 text-xs font-bold shadow-[0_0_25px_rgba(6,182,212,0.3)] hover:border-cyan-400 transition-colors">
+          <Image
+            src="https://ik.imagekit.io/e2yna5qg8/ChatGPT_Image_Sep_5__2026__11_56_23_AM-removebg-preview.png"
+            alt="LABSAINS Mini Logo"
+            width={18}
+            height={18}
+            className="object-contain drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]"
+          />
+          <span className="tracking-wider uppercase font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-teal-200">
+            LABSAINS VIRTUAL 2.0 • INTERACTIVE ENGINE
+          </span>
           <span className="px-1.5 py-0.2 rounded bg-cyan-500/20 text-[10px] text-cyan-200 border border-cyan-400/30 font-mono">
             {totalSimulations} LABS
           </span>

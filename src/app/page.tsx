@@ -125,14 +125,24 @@ export default function Home() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         {/* Header Navbar */}
         <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-8 border-b border-slate-800/80">
-          <div className="flex items-center gap-3">
-            <div className="p-3 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/20 text-white">
-              <FlaskConical size={24} />
+          <div className="flex items-center gap-4">
+            <div className="relative p-2 rounded-2xl bg-gradient-to-tr from-cyan-950/60 via-slate-900/80 to-blue-950/60 border border-cyan-500/30 shadow-[0_0_25px_rgba(6,182,212,0.25)] flex items-center justify-center group overflow-hidden">
+              <div className="absolute inset-0 bg-cyan-400/10 rounded-2xl blur-md group-hover:bg-cyan-400/20 transition-all"></div>
+              <Image 
+                src="https://ik.imagekit.io/e2yna5qg8/ChatGPT_Image_Sep_5__2026__11_56_23_AM-removebg-preview.png"
+                alt="LABSAINS Logo"
+                width={46}
+                height={46}
+                className="relative z-10 object-contain drop-shadow-[0_0_12px_rgba(34,211,238,0.6)] brightness-110 contrast-125 hover:scale-105 transition-transform"
+                priority
+              />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">LABSAINS</span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-300 border border-slate-700">
+                <span className="text-xs font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-300 drop-shadow-[0_0_8px_rgba(6,182,212,0.3)]">
+                  LABSAINS
+                </span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800/90 text-slate-300 border border-slate-700 shadow-sm">
                   Virtual Lab v2.0
                 </span>
               </div>
@@ -364,7 +374,17 @@ export default function Home() {
         )}
 
         {/* Footer */}
-        <footer className="mt-20 pt-8 border-t border-slate-800/80 text-center text-xs text-slate-500">
+        <footer className="mt-20 pt-8 border-t border-slate-800/80 flex flex-col items-center justify-center gap-3 text-xs text-slate-500">
+          <div className="flex items-center gap-2">
+            <Image
+              src="https://ik.imagekit.io/e2yna5qg8/ChatGPT_Image_Sep_5__2026__11_56_23_AM-removebg-preview.png"
+              alt="LABSAINS Logo"
+              width={26}
+              height={26}
+              className="object-contain drop-shadow-[0_0_8px_rgba(6,182,212,0.4)] opacity-80"
+            />
+            <span className="font-bold text-slate-400">LABSAINS Virtual Laboratory</span>
+          </div>
           <p>© 2026 LABSAINS - Platform Simulasi Praktikum Virtual Interaktif (Fisika, Kimia, Biologi).</p>
         </footer>
       </div>
