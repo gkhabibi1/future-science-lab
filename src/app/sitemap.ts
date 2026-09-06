@@ -2,8 +2,8 @@ import { MetadataRoute } from 'next';
 import { SIMULATION_LIST } from '@/data/simulations';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Use environment variable if provided, fallback to standard production URL
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://labsains.id').replace(/\/$/, '');
+  // Use environment variable if provided, fallback to production domain
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://labsains.online').replace(/\/$/, '');
 
   // Dynamic simulation routes
   const simulationUrls: MetadataRoute.Sitemap = SIMULATION_LIST.map((sim) => ({

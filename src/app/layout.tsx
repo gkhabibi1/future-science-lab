@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://labsains.online'),
   title: "LABSAINS | Simulasi Praktikum Virtual Sains Interaktif",
   description: "Platform laboratorium virtual interaktif berbasis AI untuk praktikum Fisika, Kimia, dan Biologi (SD, SMP, SMA).",
   icons: {
