@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>3D Projectile Motion - Interactive Hammer Throw Physics Simulator</title>
+  <meta name="description" content="A modern, scientific, educational 3D projectile motion simulator and physics comparison laboratory." />
+  
+  <link rel="stylesheet" href="./styles.css" />
+
+  <!-- ES Module Import Map for Three.js and OrbitControls -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <!-- Left Viewport: Large 3D Simulation -->
+    <main id="simulation-viewport">
+      <div id="canvas-container"></div>
+      <div id="viewport-hud"></div>
+    </main>
+
+    <!-- Right Sidebar: Controls, Real-Time Physics Telemetry, and Experiment Lab -->
+    <aside id="sidebar-panel">
+      <div id="ui-container"></div>
+    </aside>
+  </div>
+
+  <!-- Main Entry Point Application Script -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

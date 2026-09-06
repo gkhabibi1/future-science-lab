@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Target, Play, RotateCcw, Info, Rocket, Zap, CircleDot } from 'lucide-react';
+import { Target, Play, RotateCcw, Info, Rocket, Zap, CircleDot, Gamepad2, ExternalLink, X } from 'lucide-react';
 import MathFormula from '@/components/MathFormula';
 
 type ObjectType = 'rocket' | 'plasma' | 'drone';
@@ -15,6 +15,7 @@ export default function GerakParabolaSim() {
   const [isFiring, setIsFiring] = useState<boolean>(false);
   const [simTime, setSimTime] = useState<number>(0);
   const [showVectors, setShowVectors] = useState<boolean>(true);
+  const [show3DGame, setShow3DGame] = useState<boolean>(false);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const trailRef = useRef<Array<{ x: number; y: number }>>([]);
@@ -199,7 +200,7 @@ export default function GerakParabolaSim() {
         />
 
         {/* Controls Overlay */}
-        <div className="absolute top-2 left-2 sm:top-4 sm:left-4 flex gap-1.5 sm:gap-2 z-10">
+        <div className="absolute top-2 left-2 sm:top-4 sm:left-4 flex flex-wrap gap-1.5 sm:gap-2 z-10">
           <button
             onClick={handleFire}
             disabled={isFiring}
@@ -212,6 +213,12 @@ export default function GerakParabolaSim() {
             className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg sm:rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-300 text-[11px] sm:text-xs font-semibold border border-slate-700 backdrop-blur transition"
           >
             <RotateCcw size={13} /> Reset
+          </button>
+          <button
+            onClick={() => setShow3DGame(true)}
+            className="flex items-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-[11px] sm:text-xs font-bold shadow-lg transition border border-cyan-400/40"
+          >
+            <Gamepad2 size={13} /> 🎮 Mode Game 3D
           </button>
         </div>
 
@@ -331,6 +338,50 @@ export default function GerakParabolaSim() {
           />
         </div>
       </div>
+
+      {/* 3D Simulation Game Modal */}
+      {show3DGame && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/80 backdrop-blur-md">
+          <div className="relative w-full max-w-5xl h-[85vh] bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-950/60">
+              <div className="flex items-center gap-2">
+                <span className="p-1.5 rounded-lg bg-cyan-500/20 text-cyan-400">
+                  <Gamepad2 size={18} />
+                </span>
+                <div>
+                  <h3 className="text-sm sm:text-base font-bold text-white">3D Projectile Motion Simulator (Lempar Palu)</h3>
+                  <p className="text-[10px] sm:text-xs text-slate-400">Simulasi Fisika 3D Interaktif Berbasis WebGL (Three.js & ES Modules)</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <a
+                  href="/3d-projectile-simulator/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition"
+                  title="Buka Layar Penuh di Tab Baru"
+                >
+                  <ExternalLink size={14} /> <span className="hidden sm:inline">Tab Baru</span>
+                </a>
+                <button
+                  onClick={() => setShow3DGame(false)}
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-rose-900/40 text-slate-400 hover:text-rose-300 border border-slate-700 transition"
+                  title="Tutup Modal"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+            </div>
+            <div className="flex-1 w-full h-full bg-slate-950">
+              <iframe
+                src="/3d-projectile-simulator/index.html"
+                className="w-full h-full border-0"
+                title="3D Projectile Motion Simulator"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

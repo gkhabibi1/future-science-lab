@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Play, RotateCcw, Save, Settings2, Sparkles, ArrowLeft, Rocket, Zap, CircleDot } from 'lucide-react';
+import { Play, RotateCcw, Save, Settings2, Sparkles, ArrowLeft, Rocket, Zap, CircleDot, Gamepad2, ExternalLink, X } from 'lucide-react';
 import Link from 'next/link';
 import MathFormula from '@/components/MathFormula';
 
@@ -15,6 +15,7 @@ export default function GerakParabola() {
   const [objectType, setObjectType] = useState<ObjectType>('rocket');
   const [isSimulating, setIsSimulating] = useState(false);
   const [showVectors, setShowVectors] = useState(true);
+  const [show3DGame, setShow3DGame] = useState(false);
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const tRef = useRef(0);
@@ -344,8 +345,16 @@ export default function GerakParabola() {
             <p className="text-slate-400 text-xs font-medium mt-1">Laboratorium Virtual Fisika Presisi (Preview Lintasan & Telemetri Lengkap)</p>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold">
-            <Sparkles size={14} /> Enhanced Physics Engine
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setShow3DGame(true)}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white text-xs font-extrabold shadow-xl shadow-cyan-500/20 border border-cyan-400/40 transition-all hover:scale-105 active:scale-95"
+            >
+              <Gamepad2 size={16} /> 🎮 Mode Games 3D
+            </button>
+            <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold">
+              <Sparkles size={14} /> Enhanced Physics Engine
+            </div>
           </div>
         </header>
 
@@ -461,6 +470,12 @@ export default function GerakParabola() {
               <button onClick={handleReset} className="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-300 py-3 rounded-2xl font-bold text-xs transition-all border border-slate-700 active:scale-95">
                 <RotateCcw size={16} /> Reset Lintasan
               </button>
+              <button
+                onClick={() => setShow3DGame(true)}
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white py-3 rounded-2xl font-extrabold text-xs shadow-lg shadow-cyan-600/30 transition-all border border-cyan-400/40 active:scale-95"
+              >
+                <Gamepad2 size={16} /> 🎮 Buka 3D Hammer Simulator
+              </button>
             </div>
           </div>
 
@@ -488,6 +503,50 @@ export default function GerakParabola() {
           </div>
         </div>
       </div>
+
+      {/* 3D Simulation Game Modal */}
+      {show3DGame && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/80 backdrop-blur-md">
+          <div className="relative w-full max-w-5xl h-[85vh] bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-950/60">
+              <div className="flex items-center gap-2">
+                <span className="p-1.5 rounded-lg bg-cyan-500/20 text-cyan-400">
+                  <Gamepad2 size={18} />
+                </span>
+                <div>
+                  <h3 className="text-sm sm:text-base font-bold text-white">3D Projectile Motion Simulator (Lempar Palu)</h3>
+                  <p className="text-[10px] sm:text-xs text-slate-400">Simulasi Fisika 3D Interaktif Berbasis WebGL (Three.js & ES Modules)</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <a
+                  href="/3d-projectile-simulator/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition"
+                  title="Buka Layar Penuh di Tab Baru"
+                >
+                  <ExternalLink size={14} /> <span className="hidden sm:inline">Tab Baru</span>
+                </a>
+                <button
+                  onClick={() => setShow3DGame(false)}
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-rose-900/40 text-slate-400 hover:text-rose-300 border border-slate-700 transition"
+                  title="Tutup Modal"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+            </div>
+            <div className="flex-1 w-full h-full bg-slate-950">
+              <iframe
+                src="/3d-projectile-simulator/index.html"
+                className="w-full h-full border-0"
+                title="3D Projectile Motion Simulator"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
